@@ -4,6 +4,10 @@ import { AtSymbolIcon, CakeIcon, FingerPrintIcon, LockClosedIcon, ShieldCheckIco
 
 type Props = {
     placeholder: string;
+    type: string;
+    isDate?: boolean;
+    value?: string;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const getIcon = (icon: string) => {
@@ -26,20 +30,35 @@ const getIcon = (icon: string) => {
 
 
 }
-const CustomInput = ({ placeholder }: Props) => {
+const CustomInput = ({ placeholder, type, isDate, value, onChange }: Props) => {
 
     const [style, setStyle] = React.useState<string>('Input__Container')
-
+    const [isType, setIsType] = React.useState<string>(type)
     const InFocus = () => {
         setStyle('Input__Container--focus')
+        if (isDate) setIsType('date')
     }
     const OutFocus = () => {
         setStyle('Input__Container')
+        if (isDate) {
+            // let tempDate = value;
+            // tempDate = tempDate?.split('-').reverse().join('-');
+            // console.log(tempDate);
+            // value = tempDate;
+            setIsType('text')
+            
+        }
     }
 
     return (
         <div className={style}>
-            <input className='input' type="text" placeholder={placeholder} onFocus={() => InFocus()} onBlur={()=> OutFocus()} />
+            <input className='input'
+                type={isType}
+                placeholder={placeholder}
+                onFocus={() => InFocus()}
+                onBlur={() => OutFocus()}
+                value={value}
+                onChange={onChange} />
             {getIcon(placeholder)}
         </div>
     );
