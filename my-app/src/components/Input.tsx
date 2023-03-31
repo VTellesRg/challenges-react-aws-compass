@@ -1,41 +1,45 @@
 
 import React from 'react';
-import icon1 from './../assets/images/Vector.png';
-import icon2 from './../assets/images/Vector(1).png';
-import icon3 from './../assets/images/Vector(2).png';
-import icon4 from './../assets/images/Vector(3).png';
-import icon5 from './../assets/images/Vector(4).png';
-import icon6 from './../assets/images/Vector(5).png';
+import { AtSymbolIcon, CakeIcon, FingerPrintIcon, LockClosedIcon, ShieldCheckIcon, UserIcon } from '@heroicons/react/24/solid'
 
-alert(icon1)
 type Props = {
     placeholder: string;
-    onFocus: (event: React.ChangeEvent<HTMLInputElement>) => void;
-};
+}; 
 
 const getIcon = (icon: string) => {
     switch (icon) {
         case 'Nome':
-            return <img src={icon1}  className="input__icon"/>
+            return <UserIcon className="input__icon" />
         case 'Email':
-            return <img src={icon2} className="input__icon"/>
+            return <AtSymbolIcon className="input__icon" />
         case 'Usuário':
-            return <img src={icon3} className="input__icon"/>
+            return <FingerPrintIcon className="input__icon" />
         case 'Nascimento':
-            return <img src={icon4} className="input__icon"/>
+            return <CakeIcon className="input__icon" />
         case 'Senha':
-            return <img src={icon5} className="input__icon"/>
+            return <LockClosedIcon className="input__icon" />
         case 'Confirmar Senha':
-            return <img src={icon6} className="input__icon"/>
+            return <ShieldCheckIcon className="input__icon" />
         default:
             return <></>
     }
 
+
 }
-const CustomInput = ({  onFocus, placeholder }: Props) => {
+const CustomInput = ({ placeholder }: Props) => {
+
+    const [style, setStyle] = React.useState<string>('Input__Container')
+
+    const InFocus = () => {
+        setStyle('Input__Container--focus')
+    }
+    const OutFocus = () => {
+        setStyle('Input__Container')
+    }
+
     return (
-        <div className='Input__Container'>
-            <input type="text" placeholder={placeholder} onFocus={onFocus} />
+        <div className={style}>
+            <input type="text" placeholder={placeholder} onFocus={() => InFocus()} onBlur={()=> OutFocus()} />
             {getIcon(placeholder)}
         </div>
     );
