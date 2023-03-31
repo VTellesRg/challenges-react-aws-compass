@@ -1,4 +1,3 @@
-
 import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
@@ -8,7 +7,8 @@ import Register from './pages/Register';
 
 function App() {
   return (
-      <div className='container'>
+    <div className='container'>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <div className='container__left'>
           <Routes>
             <Route path="/" element={<Login />} />

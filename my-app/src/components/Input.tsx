@@ -4,7 +4,7 @@ import { AtSymbolIcon, CakeIcon, FingerPrintIcon, LockClosedIcon, ShieldCheckIco
 
 type Props = {
     placeholder: string;
-}; 
+};
 
 const getIcon = (icon: string) => {
     switch (icon) {
@@ -39,10 +39,11 @@ const CustomInput = ({ placeholder }: Props) => {
 
     return (
         <div className={style}>
-            <input type="text" placeholder={placeholder} onFocus={() => InFocus()} onBlur={()=> OutFocus()} />
+            <input className='input' type="text" placeholder={placeholder} onFocus={() => InFocus()} onBlur={()=> OutFocus()} />
             {getIcon(placeholder)}
         </div>
     );
 };
 
 export default CustomInput;
+
