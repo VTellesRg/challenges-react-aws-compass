@@ -20,14 +20,23 @@ html {
 }
 
 .container__right {
-  
   flex: 1;
   width: 50vw;
   height: 71.111vw;
   background-image: url('./../public/assets/images/side_image.png');
   background-size: cover;
 }
-
+/* side_image goes off the screen */
+@media screen and (max-width: 512px) {
+  .container__right {
+    display: none;
+  }
+  /* .container__left {
+    width: 100vw;
+    height: 100vh;
+  } */
+}
+  
 .header {
   width: 28.194vw;
   /* 406px */
