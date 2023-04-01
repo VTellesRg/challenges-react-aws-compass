@@ -1,4 +1,5 @@
 
+
 import React from "react";
 import { Link } from "react-router-dom";
 import CustomInput from "../components/Input";
@@ -6,71 +7,70 @@ import Button from "../components/Button";
 
 export default function Register() {
 
-  const [name, setName] = React.useState("");
-  const [username, setUsername] = React.useState("");
-  const [birth, setBirth] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [name, setName] = React.useState<string>("");
+  const [username, setUsername] = React.useState<string>("");
+  const [birth, setBirth] = React.useState<string>("");
+  const [email, setEmail] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
+  const [confirmPassword, setConfirmPassword] = React.useState<string>("");
 
-  // React.useEffect(() => {
-  //   console.log(birth.length);
-  //   if (birth.length === 10) {
-  //     const brDate = birth.split("-").reverse().join("-");
-  //     console.log(brDate);
-  //   }
+  const [errorMesssage, setErrorMessage] = React.useState<number>(0);
 
-  // }, [birth]);
-  const handleDate = (date: string) => {
-    let brDate = date;
-    if (date.length === 10) {
-      brDate = date.split("-").reverse().join("-");
-      console.log(brDate);
-    }
-    setBirth(brDate);
-    
-  }
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setErrorMessage(password === confirmPassword ? 0 : 1);
+  };
   return (
     <div>
       <div className="header">
         <h1 className="header__title">Olá,</h1>
         <p className="header__p">Por favor, registre-se para continuar</p>
       </div>
-      <form className="form" action="#">
+      <form className="form" onSubmit={(e) => handleSubmit(e)} >
         <h2 className="form_h2">Registro</h2>
-        <CustomInput placeholder="Nome"
+        <CustomInput
           value={name}
+          onChangeText={(event) => setName(event.target.value)}
           type="text"
-          onChange={(e) => setName(e.target.value)} />
+          placeholder="Nome"
 
-        <CustomInput placeholder="Usuário"
+        />
+        <CustomInput
+          onChangeText={e => setUsername(e.target.value)}
+          type="text"
+          placeholder="Usuário"
           value={username}
+        />
+        <CustomInput
+          onChangeText={e => setBirth(e.target.value)}
           type="text"
-          onChange={(e) => setUsername(e.target.value)} />
-
-        <CustomInput placeholder="Nascimento"
-          value={birth}
-          type="text"
-          isDate
-          onChange={(e) => setBirth(e.target.value)} />
-
-        <CustomInput placeholder="Email"
-          value={email}
+          placeholder="Nascimento"
+          isDate 
+          value={birth}/>
+        <CustomInput
+          onChangeText={e => setEmail(e.target.value)}
           type="email"
-          onChange={(e) => setEmail(e.target.value)} />
-
-        <CustomInput placeholder="Senha"
-          value={password}
+          placeholder="Email"
+          value={email}
+        />
+        <CustomInput
+          onChangeText={e => setPassword(e.target.value)}
           type="password"
-          onChange={(e) => setPassword(e.target.value)} />
-
-        <CustomInput placeholder="Confirmar Senha"
-          value={confirmPassword} type="password"
-          onChange={(e) => setConfirmPassword(e.target.value)} />
-
+          placeholder="Senha"
+          value={password}
+        />
+        <CustomInput
+          onChangeText={e => setConfirmPassword(e.target.value)}
+          type="password"
+          placeholder="Confirmar Senha" 
+          value={confirmPassword}
+        />
+        {errorMesssage === 1 &&
+          <p className="text__message">As senhas não correspondem!</p>
+        }
         <Button />
       </form>
-      <div className="footer">
+      <div className={errorMesssage === 1 ? 'footer__message' : "footer"}>
         <p className="text__footer">
           Já possui uma conta? <Link to="/" className="text__footer">Faça Login</Link>
         </p>
