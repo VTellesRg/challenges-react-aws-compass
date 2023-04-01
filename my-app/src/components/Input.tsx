@@ -1,13 +1,13 @@
-
 import React from 'react';
 import { AtSymbolIcon, CakeIcon, FingerPrintIcon, LockClosedIcon, ShieldCheckIcon, UserIcon } from '@heroicons/react/24/solid'
+
 
 type Props = {
     placeholder: string;
     type: string;
     isDate?: boolean;
-    value?: string;
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    value: string;
+    onChangeText: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const getIcon = (icon: string) => {
@@ -28,41 +28,44 @@ const getIcon = (icon: string) => {
             return <></>
     }
 
-
 }
-const CustomInput = ({ placeholder, type, isDate, value, onChange }: Props) => {
+const CustomInput = ({ placeholder, type, isDate, value, onChangeText }: Props) => {
 
-    const [style, setStyle] = React.useState<string>('Input__Container')
-    const [isType, setIsType] = React.useState<string>(type)
+    const [style__, setStyle] = React.useState<string>('Input__Container')
+    const [type__, setType] = React.useState<string>(type as string);
+    const [value__, setValue] = React.useState<string>(value as string);
+
     const InFocus = () => {
         setStyle('Input__Container--focus')
-        if (isDate) setIsType('date')
+        if (isDate === true) {
+            setType('date')
+        }
     }
     const OutFocus = () => {
         setStyle('Input__Container')
-        if (isDate) {
-            // let tempDate = value;
-            // tempDate = tempDate?.split('-').reverse().join('-');
-            // console.log(tempDate);
-            // value = tempDate;
-            setIsType('text')
-            
+        if (isDate === true) {
+            let formattedDate = value__.split('-').reverse().join('/')
+            setValue(formattedDate)
+            setType('text')
         }
     }
 
     return (
-        <div className={style}>
-            <input className='input'
-                type={isType}
+        <div className={style__}>
+            <input
+                className='input'
+                value={value__}
+                type={type__}
                 placeholder={placeholder}
                 onFocus={() => InFocus()}
                 onBlur={() => OutFocus()}
-                value={value}
-                onChange={onChange} />
+                onChange={(e) => {
+                    onChangeText(e);
+                    setValue(e.target.value)}}
+                />
             {getIcon(placeholder)}
         </div>
     );
 };
 
 export default CustomInput;
-
