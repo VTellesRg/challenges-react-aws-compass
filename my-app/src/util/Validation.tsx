@@ -13,21 +13,28 @@ export interface ValidateProps {
 export function validateName(name: string) {
 
     const nameRegex =  RegExp(/^[a-zA-Z ]{2,30}$/);
-    return name.match(nameRegex) !== null;
+    return name.match(nameRegex) === null;
+
+}
+
+export function validateUsername(username: string) {
+
+    const usernameRegex = RegExp(/^[a-zA-Z0-9_]{4,15}$/);
+    return username.match(usernameRegex) === null;
 
 }
 
 export function validateEmail(email: string) {
 
     const emailRegex = RegExp(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/);
-    return email.match(emailRegex) !== null;
+    return email.match(emailRegex) === null;
     
 }
 
 export function validatePassword (password: string) {
-
+    
     const passwordRegex = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/);
-    return password.match(passwordRegex) !== null;
+    return password.match(passwordRegex) === null;
   
 }
 

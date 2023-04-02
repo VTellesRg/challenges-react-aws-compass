@@ -4,7 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CustomInput from "../components/Input";
 import Button from "../components/Button";
-import { validateName, validateEmail, validatePassword } from "../util/Validation";
+import { validateName, validateUsername, validateEmail, validatePassword, Rafael } from "../util/Validation";
 
 export default function Register() {
 
@@ -15,21 +15,26 @@ export default function Register() {
   const [password, setPassword] = React.useState<string>("");
   const [confirmPassword, setConfirmPassword] = React.useState<string>("");
 
-  const [errorMesssage, setErrorMessage] = React.useState<number>(0);
+  const [errorMessage, setErrorMessage] = React.useState<number[]>([]);
+  //const [errorMessage, setErrorMessage] = React.useState<number[]>([1, 2, 3, 4, 5]); //teste  
+
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setErrorMessage(password === confirmPassword ? 0 : 1);
-    let resName = validateName(name);
-    console.log(resName);
+    let errors: number[] = [];
 
-    let resEmail = validateEmail(email);
-    console.log(resEmail);
 
-    let resPassword = validatePassword(password);
-    console.log(resPassword);
+    if (validateName(name) === true) errors.push(1); // 1 error for name
+    if (validateUsername(username) === true) errors.push(2); // 2 error for username
+    if (validateEmail(email)=== true) errors.push(3); // 3 error for email
+    if (validatePassword(password) === true) errors.push(4); // 4 error for strengh password
+    if (password !== confirmPassword) errors.push(5);// 5 error for password
+    if (username === Rafael.username || email === Rafael.email) errors.push(6); // 6 error for user already exists
+
+    setErrorMessage(errors);
 
   };
+
   return (
     <div>
       <div className="header">
@@ -43,48 +48,62 @@ export default function Register() {
           onChangeText={(event) => setName(event.target.value)}
           type="text"
           placeholder="Nome"
-
         />
+        {errorMessage.includes(1) &&
+          <p className="text__message">Por favor, insira um nome válido</p>
+        }
         <CustomInput
           onChangeText={e => setUsername(e.target.value)}
           type="text"
           placeholder="Usuário"
           value={username}
         />
+        {errorMessage.includes(2) &&
+          <p className="text__message">Usuário deve ter 4 a 15 caracteres</p>
+        }
+        {errorMessage.includes(6) &&
+          <p className="text__message">Usuário já existe</p>
+        }
         <CustomInput
           onChangeText={e => setBirth(e.target.value)}
           type="text"
           placeholder="Nascimento"
-          isDate 
-          value={birth}/>
+          isDate
+          value={birth} />
         <CustomInput
           onChangeText={e => setEmail(e.target.value)}
           type="email"
           placeholder="Email"
           value={email}
         />
+
+        {errorMessage.includes(3) &&
+          <p className="text__message">Por favor, insira um endereço de email válido</p>
+        }
         <CustomInput
           onChangeText={e => setPassword(e.target.value)}
           type="password"
           placeholder="Senha"
           value={password}
         />
+        {errorMessage.includes(4) &&
+          <p className="text__message">Crie uma senha forte com 8 caracteres ou mais, ex.: S3nh@123</p>
+        }
         <CustomInput
           onChangeText={e => setConfirmPassword(e.target.value)}
           type="password"
-          placeholder="Confirmar Senha" 
+          placeholder="Confirmar Senha"
           value={confirmPassword}
         />
-        {errorMesssage === 1 &&
+        {errorMessage.includes(5) &&
           <p className="text__message">As senhas não correspondem!</p>
         }
-        <Button title="Registre-se"/>
-      </form>
-      <div className={errorMesssage === 1 ? 'footer__message' : "footer"}>
+        <Button title="Registre-se" />
         <p className="text__footer">
           Já possui uma conta? <Link to="/" className="text__footer">Faça Login</Link>
         </p>
-      </div>
+      </form>
+
     </div>
   );
 }

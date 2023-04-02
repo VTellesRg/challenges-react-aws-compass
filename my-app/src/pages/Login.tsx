@@ -14,8 +14,10 @@ export default function Register() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setErrorMessage(password === Rafael.password ? 0 : 1);
-    setErrorMessage(email === Rafael.email ? 0 : 2);
+    let error = 0;
+
+    if (password !== Rafael.password || email !== Rafael.email) error = 1;
+    setErrorMessage(error);
 
   };
   return (
@@ -43,9 +45,7 @@ export default function Register() {
         {errorMesssage === 1 &&
           <p className="text__message">Usuário e/ou Senha inválidos. Por favor, tente novamente!</p>
         }
-        {errorMesssage === 2 &&
-          <p className="text__message">Usuário e/ou Senha inválidos. Por favor, tente novamente!</p>
-        }
+       
         <Button title="Logar-se" />
       </form>
       <div className={errorMesssage === 1 ? 'footer__message' : "footer"}>
