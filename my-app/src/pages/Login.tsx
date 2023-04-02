@@ -1,9 +1,8 @@
-
-
 import React from "react";
 import { Link } from "react-router-dom";
 import CustomInput from "../components/Input";
 import Button from "../components/Button";
+import { Rafael } from "../util/Validation";
 
 export default function Register() {
 
@@ -15,15 +14,8 @@ export default function Register() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // setErrorMessage(password === confirmPassword ? 0 : 1);
-    // let resName = validateName(name);
-    // console.log(resName);
-
-    // let resEmail = validateEmail(email);
-    // console.log(resEmail);
-
-    // let resPassword = validatePassword(password);
-    // console.log(resPassword);
+    setErrorMessage(password === Rafael.password ? 0 : 1);
+    setErrorMessage(email === Rafael.email ? 0 : 2);
 
   };
   return (
@@ -33,7 +25,7 @@ export default function Register() {
         <p className="header__p">Para continuar navegando de forma segura, efetue o login</p>
       </div>
       <form className="form" onSubmit={(e) => handleSubmit(e)} >
-        <h2 className="form_h2">Registro</h2>
+        <h2 className="form_h2">Login</h2>
              
         <CustomInput
           onChangeText={e => setEmail(e.target.value)}
@@ -51,11 +43,14 @@ export default function Register() {
         {errorMesssage === 1 &&
           <p className="text__message">Usuário e/ou Senha inválidos. Por favor, tente novamente!</p>
         }
+        {errorMesssage === 2 &&
+          <p className="text__message">Usuário e/ou Senha inválidos. Por favor, tente novamente!</p>
+        }
         <Button title="Logar-se" />
       </form>
       <div className={errorMesssage === 1 ? 'footer__message' : "footer"}>
         <p className="text__footer">
-          Novo por aqui? Registre-se<Link to="/register" className="text__footer">Faça Login</Link>
+          Novo por aqui? <Link to="/register" className="text__footer">Registre-se</Link>
         </p>
       </div>
     </div>
