@@ -1,9 +1,11 @@
-import React from "react";
+type Props = {
+    title: string;
+};
 
-export default function Button() {
+export default function Button({title}:Props) {
     return (
         <button type="submit" className="button">
-        Cadastrar
+        {title}
         </button>
     );
     }
