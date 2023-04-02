@@ -26,11 +26,11 @@ export default function Register() {
 
     if (validateName(name) === true) errors.push(1); // 1 error for name
     if (validateUsername(username) === true) errors.push(2); // 2 error for username
-    if (validateEmail(email)=== true) errors.push(3); // 3 error for email
+    if (validateEmail(email) === true) errors.push(3); // 3 error for email
     if (validatePassword(password) === true) errors.push(4); // 4 error for strengh password
     if (password !== confirmPassword) errors.push(5);// 5 error for password
-    if (username === Rafael.username || email === Rafael.email) errors.push(6); // 6 error for user already exists
-
+    if (username === Rafael.username) errors.push(6); // 6 error for user already exists
+    if (email === Rafael.email) errors.push(7); // 7 error for email already exists
     setErrorMessage(errors);
 
   };
@@ -79,6 +79,9 @@ export default function Register() {
 
         {errorMessage.includes(3) &&
           <p className="text__message">Por favor, insira um endereço de email válido</p>
+        }
+        {errorMessage.includes(7) &&
+          <p className="text__message">Email já existe</p>
         }
         <CustomInput
           onChangeText={e => setPassword(e.target.value)}
