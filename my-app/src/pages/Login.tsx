@@ -4,30 +4,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CustomInput from "../components/Input";
 import Button from "../components/Button";
-import { validateName, validateEmail, validatePassword } from "../util/Validation";
 
 export default function Register() {
 
-  const [name, setName] = React.useState<string>("");
-  const [username, setUsername] = React.useState<string>("");
-  const [birth, setBirth] = React.useState<string>("");
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
-  const [confirmPassword, setConfirmPassword] = React.useState<string>("");
+
 
   const [errorMesssage, setErrorMessage] = React.useState<number>(0);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setErrorMessage(password === confirmPassword ? 0 : 1);
-    let resName = validateName(name);
-    console.log(resName);
+    // setErrorMessage(password === confirmPassword ? 0 : 1);
+    // let resName = validateName(name);
+    // console.log(resName);
 
-    let resEmail = validateEmail(email);
-    console.log(resEmail);
+    // let resEmail = validateEmail(email);
+    // console.log(resEmail);
 
-    let resPassword = validatePassword(password);
-    console.log(resPassword);
+    // let resPassword = validatePassword(password);
+    // console.log(resPassword);
 
   };
   return (
