@@ -4,6 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CustomInput from "../components/Input";
 import Button from "../components/Button";
+import { validateName, validateEmail, validatePassword } from "../util/Validation";
 
 export default function Register() {
 
@@ -19,6 +20,15 @@ export default function Register() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setErrorMessage(password === confirmPassword ? 0 : 1);
+    let resName = validateName(name);
+    console.log(resName);
+
+    let resEmail = validateEmail(email);
+    console.log(resEmail);
+
+    let resPassword = validatePassword(password);
+    console.log(resPassword);
+
   };
   return (
     <div>
@@ -68,7 +78,7 @@ export default function Register() {
         {errorMesssage === 1 &&
           <p className="text__message">As senhas não correspondem!</p>
         }
-        <Button />
+        <Button title="Registre-se"/>
       </form>
       <div className={errorMesssage === 1 ? 'footer__message' : "footer"}>
         <p className="text__footer">
