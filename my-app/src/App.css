@@ -8,21 +8,22 @@ html {
   display: flex;
   flex-direction: row;
 }
-/* login/ register screen */
+
 .container__left {
   display: flex;
-  flex: 1;
   align-items: center;
   justify-content: center;
   width: 50vw;
-  height: 65.069vw;
+  /* height: 65.069vw; */
   padding: 3.021vw 0;
 }
-/*side_image */
+
 .container__right {
-  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 50vw;
-  height: 71.111vw;
+  min-height: 71.111vw;
   background-image: url('./../public/assets/images/side_image.png');
   background-size: cover;
 }
@@ -32,7 +33,7 @@ html {
   /* 406px */
   height: 10vw;
   /* 144px */
-  margin-bottom: 6.597vw;
+  /*  margin-bottom: 6.597vw; */
   /* 95px */
 }
 
@@ -45,7 +46,6 @@ html {
   line-height: 1.667vw;
   /* 24px */
   color: #F5F5F5;
-
 }
 
 .header__title {
@@ -211,34 +211,17 @@ html {
     0.069vw solid #E9B425;
 }
 
-
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1.667vw;
-  /* 24px */
-}
-
-.footer__message {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0.833vw;
-  /* 12px */
-}
-
 .text__footer {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
   font-size: 1.111vw;
-  /* 16px */
   line-height: 1.667vw;
-  /* 24px */
   color: #F5F5F5;
   text-decoration: none;
   margin: 0;
+  text-align: center;
+  margin-top: 1.667vw;
 }
 
 .text__message {
@@ -266,12 +249,11 @@ html {
 
   .container__left {
     display: flex;
-    flex: 1;
     align-items: center;
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    padding: 9vw;
+    padding: 0;
   }
 
   .header {
@@ -441,45 +423,30 @@ html {
     color: #F5F5F5;
   }
 
-  .footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 5vw;
-    /* 24px */
-
-  }
-
   .text__footer {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
     font-size: 3.333vw;
-    /* 16px */
     line-height: 5vw;
-    /* 24px */
     color: #F5F5F5;
     text-decoration: none;
+    margin: 0;
+    text-align: center;
+    margin-top: 5vw;
   }
+
   .text__message {
     height: 5vw;
     margin: 5vw 0;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
-    font-size: 3.3333vw;
+    font-size: 3.333vw;
     line-height: 5vw;
     text-align: center;
     color: #E9B425;
   }
-
-.footer__message {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2.5vw;
-  /* 12px */
-}
 }
 
 .App-link {
