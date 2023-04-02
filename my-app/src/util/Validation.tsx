@@ -30,3 +30,11 @@ export function validatePassword (password: string) {
     return password.match(passwordRegex) !== null;
   
 }
+
+export const Rafael = {
+    name: "Rafael",
+    email: "rafael.menegon@compass.com",
+    username: "rafaelMenegon",
+    birth: "1993-10-11",
+    password: "R@fael123",
+}
