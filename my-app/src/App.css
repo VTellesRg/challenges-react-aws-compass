@@ -8,7 +8,7 @@ html {
   display: flex;
   flex-direction: row;
 }
-
+/* login/ register screen */
 .container__left {
   display: flex;
   flex: 1;
@@ -18,7 +18,7 @@ html {
   height: 65.069vw;
   padding: 3.021vw 0;
 }
-
+/*side_image */
 .container__right {
   flex: 1;
   width: 50vw;
@@ -271,7 +271,7 @@ html {
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    padding: 0;
+    padding: 9vw;
   }
 
   .header {
@@ -461,6 +461,25 @@ html {
     color: #F5F5F5;
     text-decoration: none;
   }
+  .text__message {
+    height: 5vw;
+    margin: 5vw 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 3.3333vw;
+    line-height: 5vw;
+    text-align: center;
+    color: #E9B425;
+  }
+
+.footer__message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2.5vw;
+  /* 12px */
+}
 }
 
 .App-link {
