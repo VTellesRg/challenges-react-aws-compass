@@ -35,3 +35,6 @@ in this folder all the project is running, at [index.tsx](https://github.com/VTe
 - at **App.css** all the pages was stylized, the whole page was setted as *.container*, while the login and register pages was *.container__left* and the [**side image**](https://github.com/VTellesRg/challenges-react-aws-compass/blob/main/my-app/public/assets/images/side_image.png) was treated as *.container_right*. to keep the responsivity of the pages was used Flexbox configurations and all CSS *px* was converted to *variable width*(vw) with help of an [online calculator](https://web-development.space/tools/px-to-vw/) for this purpose.
 - another responsive treatment that was done with Media Queries (*@media*) found in line 239 and beyond, to make the pages readable from mobile devices. one of the ways to do this was to hide the **side image** after 768px width, the other treatments were just using flexbox and vw units.
 
+###Deploy
+
+- the project can be acessed online, [click here](https://challenges-react-aws-compass.vercel.app/)
