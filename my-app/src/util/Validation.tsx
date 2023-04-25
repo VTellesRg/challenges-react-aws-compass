@@ -1,14 +1,7 @@
 // import React from "react";
 // import { Link } from 'react-router-dom';
 
-export interface ValidateProps {
-        name: string;
-        email: string;
-        username: string;
-        birth: string;
-        password: string;
-        confirmPassword: string;
-}
+
 
 export function validateName(name: string) {
 

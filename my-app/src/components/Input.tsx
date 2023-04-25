@@ -1,14 +1,7 @@
 import React from 'react';
 import { AtSymbolIcon, CakeIcon, FingerPrintIcon, LockClosedIcon, ShieldCheckIcon, UserIcon } from '@heroicons/react/24/solid'
+import { inputProps } from '../types/type';
 
-
-type Props = {
-    placeholder: string;
-    type: string;
-    isDate?: boolean;
-    value: string;
-    onChangeText: (event: React.ChangeEvent<HTMLInputElement>) => void;
-};
 
 const getIcon = (icon: string) => {
     switch (icon) {
@@ -29,7 +22,7 @@ const getIcon = (icon: string) => {
     }
 
 }
-const CustomInput = ({ placeholder, type, isDate, value, onChangeText }: Props) => {
+const CustomInput = ({ placeholder, type, isDate, value, onChangeText }: inputProps) => {
 
     const [style__, setStyle] = React.useState<string>('Input__Container')
     const [type__, setType] = React.useState<string>(type as string);
