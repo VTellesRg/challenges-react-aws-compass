@@ -10,13 +10,6 @@ type inputProps = {
     value: string;
     onChangeText: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
-type validateProps = {
-    name: string;
-    email: string;
-    username: string;
-    birth: string;
-    password: string;
-    confirmPassword: string;
-}
 
-export type { buttonProps, inputProps, validateProps };
+
+export type { buttonProps, inputProps };
