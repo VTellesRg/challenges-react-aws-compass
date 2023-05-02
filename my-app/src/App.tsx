@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
 //import logo from './logo.svg';
-import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
+import { Auth } from './helpers/Auth';
+
 
 function App() {
-
-  const [users, setUsers] = useState([]);
 
   return (
 
@@ -17,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Auth children={<Home/>} />} />
       </Routes>
     </div>
   );
