@@ -1,33 +1,45 @@
+import "./styles.css";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CustomInput from "../../components/Input";
 import Button from "../../components/Button";
-import { Rafael } from "../../util/Validation";
+// import { Rafael } from "../../util/Validation";
+import { VerifyAuth } from "../../helpers/Auth";
 
 export default function Register() {
 
-  const [email, setEmail] = React.useState<string>("");
-  const [password, setPassword] = React.useState<string>("");
+  const [email, setEmail] = React.useState<string>("ana.irschlinger.pb@compasso.com.br");
+  const [password, setPassword] = React.useState<string>("BolsistasUOL");
+  const navigate = useNavigate();
 
 
   const [errorMesssage, setErrorMessage] = React.useState<number>(0);
 
-  const handleSubmit = () => {
-
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement> ) => {
+    event.preventDefault();
     let error = 0;
 
-    if (password !== Rafael.password || email !== Rafael.email) error = 1;
-    setErrorMessage(error);
+
+    let user = await VerifyAuth({ email, pass: password });
+    if (user !== undefined) {
+      navigate('/home', {
+        state: { user },
+        replace: true
+      });
+    } else {
+      error = 1;
+      setErrorMessage(error);
+    }
 
   };
   return (
     <div className="container">
       <div className="container__left">
-        <div className="header">
+        <div className="header__">
           <h1 className="header__title">Olá,</h1>
           <p className="header__p">Para continuar navegando de forma segura, efetue o login</p>
         </div>
-        <form className="form" onSubmit={() => handleSubmit()} >
+        <form className="form" onSubmit={(e) => handleSubmit(e)} >
           <h2 className="form_h2">Login</h2>
 
           <CustomInput
@@ -59,4 +71,4 @@ export default function Register() {
 
     </div>
   );
-}
+};

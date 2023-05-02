@@ -1,10 +1,10 @@
 
-
+import "./styles.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import CustomInput from "../../components/Input";
 import Button from "../../components/Button";
-import { validateName, validateUsername, validateEmail, validatePassword, Rafael } from "../../util/Validation";
+import { validateName, validateUsername, validateEmail, validatePassword, Rafael, validateBirth } from "../../util/Validation";
 
 export default function Register() {
 
@@ -19,8 +19,8 @@ export default function Register() {
   //const [errorMessage, setErrorMessage] = React.useState<number[]>([1, 2, 3, 4, 5]); //teste  
 
 
-  const handleSubmit = () => {
-
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     let errors: number[] = [];
 
 
@@ -31,6 +31,7 @@ export default function Register() {
     if (password !== confirmPassword) errors.push(5);// 5 error for password
     if (username === Rafael.username) errors.push(6); // 6 error for user already exists
     if (email === Rafael.email) errors.push(7); // 7 error for email already exists
+    if (validateBirth(birth) === true) errors.push(8); // 8 error for birth
     setErrorMessage(errors);
 
   };
@@ -38,11 +39,11 @@ export default function Register() {
   return (
     <div className="container">
       <div className="container__left">
-        <div className="header">
+        <div className="header__">
           <h1 className="header__title">Olá,</h1>
           <p className="header__p">Por favor, registre-se para continuar</p>
         </div>
-        <form className="form" onSubmit={() => handleSubmit()} >
+        <form className="form" onSubmit={(e) => handleSubmit(e)} >
           <h2 className="form_h2">Registro</h2>
           <CustomInput
             value={name}
@@ -71,6 +72,9 @@ export default function Register() {
             placeholder="Nascimento"
             isDate
             value={birth} />
+             {errorMessage.includes(8) &&
+            <p className="text__message">Por favor, insira uma data válida</p>
+          }
           <CustomInput
             onChangeText={e => setEmail(e.target.value)}
             type="email"
