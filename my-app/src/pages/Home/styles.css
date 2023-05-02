@@ -1,58 +1,1069 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-html {
-    background: linear-gradient(180deg, #2E2F36 0%, #17181C 100%);
-  }
-  
+.container {
+    background-color: #17181C;
+    flex-direction: row;
+    display: flex;
+    overflow: hidden;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
 
 .nav {
+    box-sizing: border-box;
 
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2.917vw 0.694vw;
+    gap: 0.694vw;
+
+    width: 24.306vw;
+    height: 71.111vw;
+
+    /* gray/gray 700 */
+
+    background: #1E1F23;
+    /* gray/gray 600 */
+
+    border: 0.139vw solid #2E2F36;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+
+.nav-logo {
+    /* compass uol negativo */
+
+
+    width: 16.667vw;
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    cursor: pointer;
+}
+
+.main {
+    /* main */
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0vw;
+
+    width: 75.694vw;
+    height: 71.111vw;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
 }
 
 .header {
+    /* header */
 
-}
-.home {
+    box-sizing: border-box;
 
-}
-.user_name {
+    /* Auto layout */
 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0vw 1.944vw;
+    width: 75.694vw;
+    height: 5.069vw;
+
+    /* gray/gray 700 */
+
+    background: #1E1F23;
+    /* gray/gray 600 */
+
+    border-width: 0.139vw 0.139vw 0.139vw 0vw;
+    border-style: solid;
+    border-color: #2E2F36;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
+
+.header-left {
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0vw;
+    gap: 1.111vw;
+
+    width: 5.833vw;
+    height: 1.667vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.header-left-icon {
+    /* Frame */
+
+
+    width: 1.389vw;
+    height: 1.389vw;
+
+    color: #FFFFFF;
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.header-left-h1 {
+    /* Home */
+
+
+    width: 3.333vw;
+    height: 1.667vw;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.111vw;
+    line-height: 1.667vw;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+
+    cursor: pointer;
+}
+
+.header-right {
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.694vw;
+    gap: 0.694vw;
+
+    width: 13.889vw;
+    height: 4.306vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.header-right-image {
+    /* Frame */
+    /* user icons */
+
+    width: 2.917vw;
+    height: 2.917vw;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    border-radius: 50%;
+}
+
+.header-right-h1 {
+    /* user name */
+    /* Eduarda Pereira */
+
+    height: 1.667vw;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.111vw;
+    line-height: 1.667vw;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.my-friends {
+    /* Meus Amigos */
+
+
+    width: 7.083vw;
+    height: 1.319vw;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.111vw;
+    line-height: 1.319vw;
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
 .body {
+    /* body */
+    /* Auto layout */
 
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 2.500vw;
+    gap: 2.500vw;
+
+    width: 70.694vw;
+    height: 61.042vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 1;
 }
+
+.home {}
+
+.user_name {}
+
+
 .write_field {
+    /* write field */
+
+
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.111vw;
+
+    width: 49.306vw;
+    height: 8.333vw;
+
+    /* gray/gray 700 */
+
+    background: #1E1F23;
+    /* gray/gray 600 */
+
+    border: 0.139vw solid #2E2F36;
+    border-radius: 1.111vw;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.write_field_top {
+    /* Frame 1 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0vw;
+    gap: 1.111vw;
+
+    width: 47.083vw;
+    height: 2.569vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.write_field_top_image {
+    /* Frame */
+    /* user icons */
+
+
+    width: 2.222vw;
+    height: 2.222vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    border-radius: 50%;
+}
+
+.write_field_top_input {
+
+    padding: 0.556vw 1.667vw;
+
+    width: 40.416vw;
+    height: 1.457vw;
+
+    /* gray/gray 650 */
+
+    background: #27282F;
+    border-radius: 3.194vw;
+    border: none;
+
+    /* Inside auto layout */
+    outline: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.972vw;
+    line-height: 1.458vw;
+
+    /* identical to box height */
+
+
+    /* gray/gray 300 */
+
+    color: #fff;
+    text-align: justify;
+}
+
+.write_field_bottom {
+    /* Frame 3 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0vw;
+
+    width: 47.083vw;
+    height: 2.292vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.write_field_bottom_icon {
+    /* Frame */
+    color: #FFFFFF;
+
+    width: 1.667vw;
+    height: 1.667vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.post-input-field::placeholder {
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.972vw;
+    line-height: 1.458vw;
+    /* identical to box height */
+
+
+    /* gray/gray 300 */
+
+    color: #75767D;
 
 }
-.post_input {
+
+.write_field_bottom_button {
+    /* button post */
+
+
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0.417vw 2.222vw;
+
+    width: 7.569vw;
+    height: 2.292vw;
+
+    /* gray/gray 650 */
+
+    border: 0.139vw solid #27282F;
+    border-radius: 0.556vw;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.972vw;
+    line-height: 1.458vw;
+    /* identical to box height */
+
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    background-color: transparent;
+    cursor: pointer;
 
 }
-.image{
+
+.write_field_bottom_icons {
+    /* Frame 2 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0vw;
+    gap: 1.667vw;
+
+    width: 15vw;
+    height: 1.667vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    cursor: pointer;
 
 }
-.input {
 
-}
-.icons {
-
-}
-.button {
-
-}
 .posts {
+    /* posts */
 
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0vw;
+    /*  gap: 1.667vw; */
+
+    width: 49.306vw;
+    height: 61.042vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 1;
 }
-.name {
 
+.post {
+    /* post */
+
+
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.111vw 0vw;
+    gap: 1.111vw;
+
+    width: 49.306vw;
+    height: 49.236vw;
+
+    /* gray/gray 700 */
+
+    background: #1E1F23;
+    /* gray/gray 600 */
+
+    border: 0.139vw solid #2E2F36;
+    border-radius: 1.111vw;
+
+    /* Inside auto layout */
+
+    margin-top: 1.667vw;
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
 }
 
-.date {
+.name {}
 
-}
+.date {}
+
 .topics {
+    /* topics */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0vw;
+    gap: 2.500vw;
+
+    width: 18.889vw;
+    height: 61.042vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.trend {
+    /* trend */
+
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.667vw 1.389vw;
+    gap: 1.667vw;
+
+    width: 18.889vw;
+    height: 18.889vw;
+
+    /* gray/gray 700 */
+
+    background: #1E1F23;
+    /* gray/gray 600 */
+
+    border: 0.139vw solid #2E2F36;
+    border-radius: 1.111vw;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 
 }
 
-.friends {
+.trend-colapsed {
+    /* trend */
 
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.667vw 1.389vw;
+    gap: 1.667vw;
+
+    width: 18.889vw;
+
+    /* gray/gray 700 */
+
+    background: #1E1F23;
+    /* gray/gray 600 */
+
+    border: 0.139vw solid #2E2F36;
+    border-radius: 1.111vw;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+}
+
+.friends-list {
+    /* friends-list */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0vw;
+    gap: 1.111vw;
+
+    width: 12.500vw;
+    height: 12.222vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    overflow-y: scroll hidden;
+    overflow-x: hidden;
+}
+
+.friends-list::-webkit-scrollbar {
+    display: none;
+}
+
+.friend {
+    /* friend*/
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0vw;
+    gap: 1.111vw;
+
+    width: 12.292vw;
+    height: 2.222vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.friend-image {
+    /* frieds-image */
+    /* user icons */
+
+
+    width: 2.222vw;
+    height: 2.222vw;
+    border-radius: 50%;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.friend-name {
+    /* friend-name */
+    width: 8.958vw;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.972vw;
+    line-height: 1.458vw;
+    /* identical to box height */
+
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.trend-arrow {
+    /* Frame */
+
+
+    width: 1.667vw;
+    height: 1.667vw;
+    color: #F5F5F5;
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    cursor: pointer;
+
+}
+
+.trend-header-title {
+    /* Meus Amigos */
+
+
+    width: 7.083vw;
+    height: 1.319vw;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.111vw;
+    line-height: 1.319vw;
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.trend-header {
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0vw;
+
+    width: 16.111vw;
+    height: 1.667vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.loading {
+    /* loading */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.111vw 0vw;
+    gap: 1.111vw;
+
+    width: 49.306vw;
+    height: 49.236vw;
+
+    /* gray/gray 700 */
+
+    background: transparent;
+    /* gray/gray 600 */
+
+    /* Inside auto layout */
+
+    margin-top: 1.667vw;
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.loading-image {
+    width: 5vw;
+    height: 5vw;
+    -webkit-animation: loading-image 2s infinite linear;
+}
+
+.post-header {
+    /* Frame 8 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 1.111vw;
+/*     gap: 1.111vw;
+ */
+    width: 47.084vw;
+    height: 6.319vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.post-header-top {
+    /* Frame 5 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 1.111vw;
+
+    width: 22.917vw;
+    height: 2.708vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.post-header-top-image {
+    width: 2.222vw;
+    height: 2.222vw;
+    border-radius: 50%;
+}
+
+.post-header-top-info {
+    /* Frame 6 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+
+    width: 19.583vw;
+    height: 2.708vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.post-header-top-info-name {
+    /* Patrícia Menezes */
+
+
+    height: 1.458vw;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.972vw;
+    line-height: 1.458vw;
+    /* identical to box height */
+
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    margin: 0;
+    flex-grow: 0;
+}
+
+.post-header-top-info-date {
+    /* 12 minutos atrás em Paisagens Exuberantes */
+
+
+    height: 1.250vw;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.833vw;
+    line-height: 1.250vw;
+    /* identical to box height */
+
+
+    /* gray/gray 300 */
+
+    color: #75767D;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0;
+}
+
+.post-header-top-info-subtitle {
+    /* Frame 7 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0vw;
+    gap: 0.417vw;
+
+    width: 19.583vw;
+    height: 1.250vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.post-header-top-info-text {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.833vw;
+    line-height: 1.250vw;
+    /* identical to box height */
+
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.clockIcon {
+    width: 0.675vw;
+    height: 0.675vw;
+}
+
+.post-header-top-description {
+    width: 47.083vw;
+    height: 2.500vw;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.833vw;
+    line-height: 1.250vw;
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.post-main{
+    width: 49.306vw;
+    height: 20.833vw;
+}
+
+.post-main-image {
+    width: 49.306vw;
+    height: 20.833vw;
+
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    resize: both;
+
+}
+
+@keyframes loading-image {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }

@@ -11,5 +11,25 @@ type inputProps = {
     onChangeText: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
+type PostType = {
+    user: string,
+    post_date: string,
+    description: string,
+    likes: number,
+    comments: Array<{
+        user: string,
+        comment: string
+    }>,
+    url_imagem: string
+}
 
-export type { buttonProps, inputProps };
+type UserType = {
+    name: string,
+    user: string,
+    birthdate: string,
+    email: string,
+    password: string,
+    profile_photo: string
+}
+
+export type { buttonProps, inputProps, PostType, UserType };
