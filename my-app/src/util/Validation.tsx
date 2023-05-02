@@ -24,6 +24,13 @@ export function validateUsername(username: string) {
 
 }
 
+export function validateBirth(birth: string) {
+
+    const birthRegex = RegExp(/^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])/);
+    return birth.match(birthRegex) === null;
+
+}
+
 export function validateEmail(email: string) {
 
     const emailRegex = RegExp(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/);
