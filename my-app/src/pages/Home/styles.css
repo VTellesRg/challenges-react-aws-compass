@@ -103,6 +103,7 @@ html::-webkit-scrollbar {
     flex: none;
     order: 0;
     flex-grow: 0;
+    margin: 0;
 }
 
 .header-left {
@@ -278,7 +279,6 @@ html::-webkit-scrollbar {
 .home {}
 
 .user_name {}
-
 
 .write_field {
     /* write field */
@@ -533,6 +533,12 @@ html::-webkit-scrollbar {
     order: 0;
     align-self: stretch;
     flex-grow: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.posts::-webkit-scrollbar {
+    display: none;
 }
 
 .post {
@@ -546,6 +552,7 @@ html::-webkit-scrollbar {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
     padding: 1.111vw 0vw;
     gap: 1.111vw;
 
@@ -569,10 +576,6 @@ html::-webkit-scrollbar {
     align-self: stretch;
     flex-grow: 0;
 }
-
-.name {}
-
-.date {}
 
 .topics {
     /* topics */
@@ -853,9 +856,9 @@ html::-webkit-scrollbar {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0px 1.111vw;
-/*     gap: 1.111vw;
- */
+    padding: 0vw 1.111vw;
+    margin-top: 1.111vw;
+
     width: 47.084vw;
     height: 6.319vw;
 
@@ -877,7 +880,7 @@ html::-webkit-scrollbar {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0px;
+    padding: 0vw;
     gap: 1.111vw;
 
     width: 22.917vw;
@@ -907,7 +910,7 @@ html::-webkit-scrollbar {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 0px;
+    padding: 0vw;
 
     width: 19.583vw;
     height: 2.708vw;
@@ -1038,9 +1041,11 @@ html::-webkit-scrollbar {
     flex: none;
     order: 1;
     flex-grow: 0;
+    margin: 0;
+    margin-top: 1.111vw;
 }
 
-.post-main{
+.post-main {
     width: 49.306vw;
     height: 20.833vw;
 }
@@ -1048,14 +1053,677 @@ html::-webkit-scrollbar {
 .post-main-image {
     width: 49.306vw;
     height: 20.833vw;
-
-
     flex: none;
     order: 1;
     align-self: stretch;
     flex-grow: 0;
-    resize: both;
+    object-fit: cover;
+}
 
+.post-bottom-fields {
+    /* bottom fields */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.694vw 3.333vw;
+    gap: 0.694vw;
+    width: 42.640vw;
+    height: 2.431vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+    margin-top: -1.111vw;
+
+
+}
+
+.post-bottom-fields-likes {
+    /* Frame 9 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0vw;
+    gap: 0.556vw;
+
+    width: 6.528vw;
+    height: 1.111vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.post-bottom-fields-likes-p {
+    /* Curtiu */
+
+
+    width: 2.431vw;
+    height: 1.042vw;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.833vw;
+    line-height: 1.042vw;
+    /* identical to box height */
+
+
+    /* blue */
+
+    color: #2D86FC;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.post-bottom-fields-likes-acount {
+    /* Frame 10 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.139vw 0.417vw;
+
+    width: 1.875vw;
+    height: 0.972vw;
+
+    background: #2D86FC;
+    border-radius: 1.111vw;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+
+.post-bottom-fields-likes-acount-p {
+    /* 1.7k */
+
+
+    width: 1.042vw;
+    height: 0.694vw;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.556vw;
+    line-height: 0.694vw;
+    /* identical to box height */
+
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+}
+
+.like-icon {
+    /* Frame */
+
+
+    width: 1.111vw;
+    height: 1.111vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    color: #2D86FC
+}
+
+.post-bottom-fields-comments {
+    /* Frame 13 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0vw;
+    gap: 0.556vw;
+
+    width: 9.236vw;
+    height: 1.111vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.post-bottom-fields-comments-p {
+    width: 5.069vw;
+    height: 1.042vw;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.833vw;
+    line-height: 1.042vw;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    /* gray/gray 200 */
+
+    color: #A1A3A7;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.post-bottom-fields-comments-acount {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.139vw 0.417vw;
+
+    width: 1.944vw;
+    height: 0.972vw;
+
+    background: #27282F;
+    border-radius: 1.111vw;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+
+.post-bottom-fields-comments-acount-p {
+    /* 345 */
+
+
+    width: 1.111vw;
+    height: 0.694vw;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.556vw;
+    line-height: 0.694vw;
+    /* identical to box height */
+
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.comment-icon {
+    width: 1vw;
+    height: 1vw;
+
+    /* gray/gray 200 */
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    color: #A1A3A7;
+}
+
+.post-bottom-fields-shared {
+    /* Frame 14 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0vw;
+    gap: 0.556vw;
+
+    width: 6.806vw;
+    height: 1.111vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+
+.post-bottom-fields-shared-icon {
+    /* Frame */
+
+
+    width: 1.111vw;
+    height: 1.111vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    color: #A1A3A7;
+}
+
+.post-bottom-fields-shared-p {
+    /* Compartilhar */
+
+    /* Compartilhar */
+
+
+    width: 5.139vw;
+    height: 1.042vw;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.833vw;
+    line-height: 1.042vw;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    /* gray/gray 200 */
+
+    color: #A1A3A7;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.comments-area {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0vw 1.111vw;
+    gap: 1.111vw;
+
+    width: 49.306vw;
+    height: 14.097vw;
+
+    flex: none;
+    order: 3;
+    align-self: stretch;
+    flex-grow: 0;
+
+}
+
+.comments-area-mind {
+    /* what's on your mind? */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0vw;
+    gap: 1.111vw;
+
+    width: 46.250vw;
+    height: 2.569vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.comments-area-mind-user-picture {
+    /* user icons */
+
+
+    width: 2.222vw;
+    height: 2.222vw;
+    border-radius: 50%;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.comments-area-mind-input {
+    /* what's on your mind? */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.347vw 1.667vw;
+
+    width: 30.973vw;
+    height: 2.222vw;
+
+    /* gray/gray 650 */
+
+    background: #27282F;
+    border-radius: 3.194vw 0 0 3.194vw;
+    border: none;
+
+
+    /* Inside auto layout */
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.972vw;
+    line-height: 1.458vw;
+    /* identical to box height */
+
+
+    /* gray/gray 300 */
+
+    color: #75767D;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.comments-area-mind-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0.347vw 2.667vw 0.347vw 0.347vw;
+
+    height: 2.222vw;
+
+    /* gray/gray 650 */
+
+    background: #27282F;
+    border-radius: 0 3.194vw 3.194vw 0;
+    border: none;
+    margin: 0vw 0vw 0vw -3.647vw;
+
+    width: 8.610vw;
+
+    /* Inside auto layout 42.917vw*/
+
+    order: 1;
+    flex-grow: 0;
+}
+
+.comments-area-mind-icon {
+    /* Frame */
+
+
+    width: 1.211vw;
+    height: 1.211vw;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    margin: 0 0.539vw;
+    flex-grow: 0;
+    color: #A1A3A7;
+    cursor: pointer;
+}
+
+.comments-area-h1 {
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.833vw;
+    line-height: 1.250vw;
+    /* identical to box height */
+
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.comment-area {
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0vw;
+    gap: 1.111vw;
+
+    width: 47.083vw;
+    height: 4.514vw;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+    margin-top: -1.111vw;
+
+}
+
+.comment-area-user-picture {
+    /* user icons */
+    /* Frame 22 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0vw;
+
+    width: 1.667vw;
+    height: 1.667vw;
+    border-radius: 50%;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.comment-area-user-description {
+    /* Frame 6 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0vw;
+
+    width: 44.306vw;
+
+
+    /* Inside auto layout */
+
+    order: 1;
+    flex-grow: 1;
+}
+
+.comment-area-user-description-p {
+    /* user icons */
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.694vw;
+    line-height: 1.042vw;
+
+    color: #D9D9D9;
+
+
+    /* Inside auto layout */
+
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0;
+
+}
+
+.comment-area-user-description-strong {
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.833vw;
+    line-height: 1.250vw;
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.comment-area-divider {
+    /* Divider */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0vw;
+    gap: 1.111vw;
+
+    width: 47.083vw;
+    height: 0.139vw;
+
+    background: #27282F;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 3;
+    align-self: stretch;
+    flex-grow: 0;
+    margin-top: -0.694vw;
+
+}
+
+.all-comments {
+    /* Divider */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 1.111vw;
+
+    width: 47.083vw;
+    height: 1.181vw;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 4;
+    align-self: stretch;
+    flex-grow: 0;
+    
+
+}
+
+.all-comments-h1 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.972vw;
+    line-height: 1.181vw;
+    /* identical to box height */
+
+
+    color: #2D86FC;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
 
 @keyframes loading-image {

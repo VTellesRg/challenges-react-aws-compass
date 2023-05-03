@@ -12,10 +12,14 @@ import {
     PaperClipIcon,
     MapPinIcon,
     FaceSmileIcon,
+    HandThumbUpIcon,
+    ChatBubbleLeftEllipsisIcon,
+    ShareIcon,
 } from '@heroicons/react/24/solid'
 
 import "./styles.css";
 import { GetPosts, GetUsers } from "../../helpers/Data";
+import { log } from "console";
 
 export default function Home() {
 
@@ -26,7 +30,7 @@ export default function Home() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [posts, setPosts] = React.useState<any[] | null>(null);
+    const [posts, setPosts] = React.useState<PostType[] | null>(null);
     const [users, setUsers] = React.useState<UserType[] | null>(null);
 
     const getData = async (userLoc: string) => {
@@ -94,7 +98,7 @@ export default function Home() {
             navigate('/', { replace: true }); //replace the current entry in the history stack instead of adding a new one
         }
     }, []);
-
+    //to adjust: all posts, users and comments from api 
     return (
         <div className="container">
             <div className="nav">
@@ -138,7 +142,7 @@ export default function Home() {
                                             <h1 className="post-header-top-info-name">Patrícia Menezes</h1>
                                             <div className="post-header-top-info-subtitle">
                                                 <p className="post-header-top-info-date">12 minutos atrás em</p>
-                                                <img className="clockIcon" src="clock.png" />
+                                                <img className="clockIcon" src="assets/images/clock.png" />
                                                 <p className="post-header-top-info-text">Paisagens Exuberantes</p>
                                             </div>
                                         </div>
@@ -147,6 +151,55 @@ export default function Home() {
                                 </div>
                                 <div className="post-main">
                                     <img className="post-main-image" src={userImage} />
+                                </div>
+                                <div className="post-bottom-fields">
+                                    <div className="post-bottom-fields-likes">
+                                        <HandThumbUpIcon className="like-icon" />
+                                        <p className="post-bottom-fields-likes-p ">Curtiu</p>
+                                        <div className="post-bottom-fields-likes-acount">
+                                            <p className="post-bottom-fields-likes-acount-p">1.7K</p>
+                                        </div>
+                                    </div>
+                                    <div className="post-bottom-fields-comments">
+                                        <ChatBubbleLeftEllipsisIcon className="comment-icon" />
+                                        <p className="post-bottom-fields-comments-p">Comentários</p>
+                                        <div className="post-bottom-fields-comments-acount">
+                                            <p className="post-bottom-fields-comments-acount-p">345</p>
+                                        </div>
+                                    </div>
+                                    <div className="post-bottom-fields-shared">
+                                        <ShareIcon className="post-bottom-fields-shared-icon" />
+                                        <p className="post-bottom-fields-shared-p">Compartilhar</p>
+                                    </div>
+                                </div>
+                                <div className="comments-area">
+                                    <div className="comments-area-mind">
+                                        <img className="comments-area-mind-user-picture" src={userImage} />
+                                        <input className="comments-area-mind-input" type="text" placeholder="O que voce está pensando? " />
+                                        <div className="comments-area-mind-icons">
+                                            <CameraIcon className="comments-area-mind-icon" />
+                                            <PhotoIcon className="comments-area-mind-icon" />
+                                            <PaperClipIcon className="comments-area-mind-icon" />
+                                            <MapPinIcon className="comments-area-mind-icon" />
+                                            <FaceSmileIcon className="comments-area-mind-icon" />
+                                        </div>
+                                    </div>
+                                    <h1 className="comments-area-h1">Todos os comentários</h1>
+
+                                    {/* colocar dentro de um foreach */}
+                                    <div className="comment-area">
+                                        <img className="comment-area-user-picture" src={userImage} />
+                                        <div className="comment-area-user-description">
+                                            <p className="comment-area-user-description-p">
+                                                <strong className="comment-area-user-description-strong">Junior Saraiva: </strong>  Que bela paisagem! As cores são simplesmente deslumbrantes e a composição é maravilhosa. Essa foto é uma verdadeira obra de arte que captura a beleza natural do nosso mundo. É fascinante ver como a natureza pode ser tão impressionante e inspiradora. Agradeço por compartilhar esta imagem conosco!
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="comment-area-divider" />
+                                    <div className="all-comments">
+                                        <h1 className="all-comments-h1">Ver todos os comentários</h1>
+                                    </div>
+
                                 </div>
                             </div>
                         }
