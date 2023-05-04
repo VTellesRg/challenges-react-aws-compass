@@ -19,7 +19,6 @@ import {
 
 import "./styles.css";
 import { GetPosts, GetUsers } from "../../helpers/Data";
-import { log } from "console";
 
 export default function Home() {
 
@@ -30,14 +29,47 @@ export default function Home() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [posts, setPosts] = React.useState<PostType[] | null>(null);
+    const [posts, setPosts] = React.useState<any[] | null>(null);
     const [users, setUsers] = React.useState<UserType[] | null>(null);
+
+
+    // function to calculate the time since the post was published: return error is not assignable to type 'ReactNode'. 
+    // const AgeMessage = (post: PostType) => {
+    //     const postDate = new Date(post.post_date);
+    //     const Today = new Date();
+    //     const diff = Today.getTime() - postDate.getTime();
+
+    //     const sec = Math.floor(diff / 1000);
+    //     const min = Math.floor(sec / 60);
+    //     const hours = Math.floor(min / 60);
+    //     const days = Math.floor(hours / 24);
+    //     const weeks = Math.floor(days / 7);
+    //     const months = Math.floor(days / 30);
+    //     const years = Math.floor(days / 365);
+
+    //     if (sec < 60) {
+    //         return "Publicado há alguns segundos";
+    //     } else if (min < 60) {
+    //         return `Publicado há ${min} minutos`;
+    //     } else if (hours < 24) {
+    //         return `Publicado há ${hours} horas`;
+    //     } else if (days < 7) {
+    //         return `Publicado há ${days} dias`;
+    //     } else if (weeks < 4) {
+    //         return `Publicado há ${weeks} semanas`;
+    //     } else if (months < 12) {
+    //         return `Publicado há ${months} meses`;
+    //     } else {
+    //         return `Publicado há ${years} anos`;
+    //     }
+    // }
 
     const getData = async (userLoc: string) => {
         let usersList = await GetUsers();
         let postsList = await GetPosts();
         let formatedUsers: any = [];
         let formatedPosts: any = [];
+
 
         usersList.forEach((user: UserType) => {
             let userNameTemp = user.name;
@@ -74,7 +106,10 @@ export default function Home() {
             formatedPosts.push(newPost);
         });
 
-        setPosts(postsList);
+
+        setPosts(formatedPosts);
+        console.log(formatedPosts);
+
         setUsers(formatedUsers);
         setLoading(false);
     }
@@ -84,6 +119,8 @@ export default function Home() {
             return user.user === userNick;
         })
     }
+
+
 
 
     useEffect(() => {
@@ -98,7 +135,7 @@ export default function Home() {
             navigate('/', { replace: true }); //replace the current entry in the history stack instead of adding a new one
         }
     }, []);
-    //to adjust: all posts, users and comments from api 
+
     return (
         <div className="container">
             <div className="nav">
@@ -120,7 +157,8 @@ export default function Home() {
                         <div className="write_field">
                             <div className="write_field_top">
                                 <img className="write_field_top_image" src={userImage} />
-                                <input className="write_field_top_input" type="text" placeholder="No que você está pensando?" />
+                                <input className="write_field_top_input" type="text"
+                                    placeholder="No que você está pensando?" />
                             </div>
                             <div className="write_field_bottom">
                                 <div className="write_field_bottom_icons">
@@ -134,74 +172,83 @@ export default function Home() {
                             </div>
                         </div>
                         {!loading &&
-                            <div className="post">
-                                <div className="post-header">
-                                    <div className="post-header-top">
-                                        <img className="post-header-top-image" src={userImage} />
-                                        <div className="post-header-top-info">
-                                            <h1 className="post-header-top-info-name">Patrícia Menezes</h1>
-                                            <div className="post-header-top-info-subtitle">
-                                                <p className="post-header-top-info-date">12 minutos atrás em</p>
-                                                <img className="clockIcon" src="assets/images/clock.png" />
-                                                <p className="post-header-top-info-text">Paisagens Exuberantes</p>
+                            posts && posts.map((post: any, index: number, user: any) => {
+                                return (
+                                    <div className="post" key={index}>
+                                        <div className="post-header">
+                                            <div className="post-header-top">
+                                                <img className="post-header-top-image" src={post.user.profile_photo} />
+                                                <div className="post-header-top-info">
+                                                    <h1 className="post-header-top-info-name">{post.user.name}</h1>
+                                                    <div className="post-header-top-info-subtitle">
+                                                        <p className="post-header-top-info-date"></p>
+                                                        <img className="clockIcon" src="/assets/images/clock.png" />
+                                                        <p className="post-header-top-info-text">Paisagens Exuberantes</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p className="post-header-top-description">{post.description}</p>
+                                        </div>
+                                        <div className="post-main">
+                                            <img className="post-main-image" src={post.url_imagem} />
+                                        </div>
+                                        <div className="post-bottom-fields">
+                                            <div className="post-bottom-fields-likes">
+                                                <HandThumbUpIcon className="like-icon" />
+                                                <p className="post-bottom-fields-likes-p ">Curtiu</p>
+                                                <div className="post-bottom-fields-likes-acount">
+                                                    <p className="post-bottom-fields-likes-acount-p">{post.likes}</p>
+                                                </div>
+                                            </div>
+                                            <div className="post-bottom-fields-comments">
+                                                <ChatBubbleLeftEllipsisIcon className="comment-icon" />
+                                                <p className="post-bottom-fields-comments-p">Comentários</p>
+                                                <div className="post-bottom-fields-comments-acount">
+                                                    <p className="post-bottom-fields-comments-acount-p">{post.comments.length}</p>
+                                                </div>
+                                            </div>
+                                            <div className="post-bottom-fields-shared">
+                                                <ShareIcon className="post-bottom-fields-shared-icon" />
+                                                <p className="post-bottom-fields-shared-p">Compartilhar</p>
                                             </div>
                                         </div>
-                                    </div>
-                                    <p className="post-header-top-description">Minha última viagem para a Ilha do Comendador, um lugar simplesmente incrível, natureza praticamente intocada. Recomendo a todos que apreciam o mundo como ele é.</p>
-                                </div>
-                                <div className="post-main">
-                                    <img className="post-main-image" src={userImage} />
-                                </div>
-                                <div className="post-bottom-fields">
-                                    <div className="post-bottom-fields-likes">
-                                        <HandThumbUpIcon className="like-icon" />
-                                        <p className="post-bottom-fields-likes-p ">Curtiu</p>
-                                        <div className="post-bottom-fields-likes-acount">
-                                            <p className="post-bottom-fields-likes-acount-p">1.7K</p>
-                                        </div>
-                                    </div>
-                                    <div className="post-bottom-fields-comments">
-                                        <ChatBubbleLeftEllipsisIcon className="comment-icon" />
-                                        <p className="post-bottom-fields-comments-p">Comentários</p>
-                                        <div className="post-bottom-fields-comments-acount">
-                                            <p className="post-bottom-fields-comments-acount-p">345</p>
-                                        </div>
-                                    </div>
-                                    <div className="post-bottom-fields-shared">
-                                        <ShareIcon className="post-bottom-fields-shared-icon" />
-                                        <p className="post-bottom-fields-shared-p">Compartilhar</p>
-                                    </div>
-                                </div>
-                                <div className="comments-area">
-                                    <div className="comments-area-mind">
-                                        <img className="comments-area-mind-user-picture" src={userImage} />
-                                        <input className="comments-area-mind-input" type="text" placeholder="O que voce está pensando? " />
-                                        <div className="comments-area-mind-icons">
-                                            <CameraIcon className="comments-area-mind-icon" />
-                                            <PhotoIcon className="comments-area-mind-icon" />
-                                            <PaperClipIcon className="comments-area-mind-icon" />
-                                            <MapPinIcon className="comments-area-mind-icon" />
-                                            <FaceSmileIcon className="comments-area-mind-icon" />
-                                        </div>
-                                    </div>
-                                    <h1 className="comments-area-h1">Todos os comentários</h1>
+                                        <div className="comments-area">
+                                            <div className="comments-area-mind">
+                                                <img className="comments-area-mind-user-picture" src={userImage} />
+                                                <input className="comments-area-mind-input" type="text" placeholder="O que voce está pensando? " />
+                                                <div className="comments-area-mind-icons">
+                                                    <CameraIcon className="comments-area-mind-icon" />
+                                                    <PhotoIcon className="comments-area-mind-icon" />
+                                                    <PaperClipIcon className="comments-area-mind-icon" />
+                                                    <MapPinIcon className="comments-area-mind-icon" />
+                                                    <FaceSmileIcon className="comments-area-mind-icon" />
+                                                </div>
+                                            </div>
+                                            <h1 className="comments-area-h1">Todos os comentários</h1>
 
-                                    {/* colocar dentro de um foreach */}
-                                    <div className="comment-area">
-                                        <img className="comment-area-user-picture" src={userImage} />
-                                        <div className="comment-area-user-description">
-                                            <p className="comment-area-user-description-p">
-                                                <strong className="comment-area-user-description-strong">Junior Saraiva: </strong>  Que bela paisagem! As cores são simplesmente deslumbrantes e a composição é maravilhosa. Essa foto é uma verdadeira obra de arte que captura a beleza natural do nosso mundo. É fascinante ver como a natureza pode ser tão impressionante e inspiradora. Agradeço por compartilhar esta imagem conosco!
-                                            </p>
+
+                                            {post.comments && post.comments.map((comment: any, key: number) => {
+                                                return (
+                                                    <div className="comment-area" key={key}>
+                                                        <img className="comment-area-user-picture" src={comment.profile_photo} />
+                                                        <div className="comment-area-user-description">
+                                                            <p className="comment-area-user-description-p">
+                                                                <strong className="comment-area-user-description-strong">{comment.user}: </strong> {comment.comment}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })}
+
+                                            <div className="comment-area-divider" />
+                                            <div className="all-comments">
+                                                <h1 className="all-comments-h1">Ver todos os comentários</h1>
+                                            </div>
+
                                         </div>
                                     </div>
-                                    <div className="comment-area-divider" />
-                                    <div className="all-comments">
-                                        <h1 className="all-comments-h1">Ver todos os comentários</h1>
-                                    </div>
-
-                                </div>
-                            </div>
+                                )
+                            })
                         }
                         {loading &&
                             <div className="loading">
