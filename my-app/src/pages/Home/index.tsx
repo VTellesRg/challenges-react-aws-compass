@@ -15,7 +15,7 @@ import {
     HandThumbUpIcon,
     ChatBubbleLeftEllipsisIcon,
     ShareIcon,
-} from '@heroicons/react/24/solid'
+} from '@heroicons/react/24/outline'
 
 import "./styles.css";
 import { GetPosts, GetUsers } from "../../helpers/Data";
@@ -33,7 +33,7 @@ export default function Home() {
     const [users, setUsers] = React.useState<UserType[] | null>(null);
 
 
-    // function to calculate the time since the post was published: return error is not assignable to type 'ReactNode'. 
+    //fix needed: function to calculate the time since the post was published: return error is not assignable to type 'ReactNode'. 
     // const AgeMessage = (post: PostType) => {
     //     const postDate = new Date(post.post_date);
     //     const Today = new Date();
@@ -93,14 +93,14 @@ export default function Home() {
             }
 
             let userPostTemp = await handleFindUser(usersList, post.user);
-
+            //newPost construct an object with the same structure as the api but with posts and users data together
             let newPost = {
                 user: userPostTemp,
                 post_date: post.post_date,
                 description: post.description,
                 likes: post.likes,
                 comments: commentsTemp,
-                url_imagem: post.url_imagem
+                url_imagem: post.url_imagem //fix needed: some users did not receive an url image from the api
             }
 
             formatedPosts.push(newPost);
@@ -181,7 +181,7 @@ export default function Home() {
                                                 <div className="post-header-top-info">
                                                     <h1 className="post-header-top-info-name">{post.user.name}</h1>
                                                     <div className="post-header-top-info-subtitle">
-                                                        <p className="post-header-top-info-date"></p>
+                                                        <p className="post-header-top-info-date">12 minutos atrás{/* add AgeMessage function here */}</p>
                                                         <img className="clockIcon" src="/assets/images/clock.png" />
                                                         <p className="post-header-top-info-text">Paisagens Exuberantes</p>
                                                     </div>
@@ -241,7 +241,7 @@ export default function Home() {
                                             })}
 
                                             <div className="comment-area-divider" />
-                                            <div className="all-comments">
+                                            <div className="all-comments"> {/* set this function later onClick={() => setAllComments(true)} */}
                                                 <h1 className="all-comments-h1">Ver todos os comentários</h1>
                                             </div>
 
