@@ -37,7 +37,7 @@ in this folder all the project is running, at [index.tsx](https://github.com/VTe
 
 ### Deploy
 
-- the project can be acessed online, [click here](https://challenges-react-aws-compass.vercel.app/)
+- the project can be acessed online, [click here](https://challenges-react-aws-compass.vercel.app/home)
 
 
 # Second Challenge React / Aws Compass
