@@ -276,10 +276,6 @@ html::-webkit-scrollbar {
     flex-grow: 1;
 }
 
-.home {}
-
-.user_name {}
-
 .write_field {
     /* write field */
 
@@ -521,6 +517,7 @@ html::-webkit-scrollbar {
     flex-direction: column;
     align-items: center;
     padding: 0vw;
+    
     /*  gap: 1.667vw; */
 
     width: 49.306vw;
@@ -551,6 +548,7 @@ html::-webkit-scrollbar {
 
     display: flex;
     flex-direction: column;
+    min-height: 30vh;
     align-items: flex-start;
     justify-content: center;
     padding: 1.111vw 0vw;
@@ -1046,18 +1044,20 @@ html::-webkit-scrollbar {
 }
 
 .post-main {
+    display: inline-flex;
     width: 49.306vw;
     height: 20.833vw;
 }
 
 .post-main-image {
+    
     width: 49.306vw;
     height: 20.833vw;
     flex: none;
     order: 1;
-    align-self: stretch;
+    align-self: auto;
     flex-grow: 0;
-    object-fit: cover;
+    object-fit: fill;
 }
 
 .post-bottom-fields {
@@ -1460,10 +1460,11 @@ html::-webkit-scrollbar {
     background: #27282F;
     border-radius: 3.194vw 0 0 3.194vw;
     border: none;
+    outline: none;
+
 
 
     /* Inside auto layout */
-
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
@@ -1556,7 +1557,7 @@ html::-webkit-scrollbar {
     gap: 1.111vw;
 
     width: 47.083vw;
-    height: 4.514vw;
+    height: 2.514vw;
 
     /* Inside auto layout */
 
@@ -1682,7 +1683,7 @@ html::-webkit-scrollbar {
 
 .all-comments {
     /* Divider */
-
+    /* fix and improve later */
 
     /* Auto layout */
 
