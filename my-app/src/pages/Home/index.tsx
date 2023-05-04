@@ -63,6 +63,7 @@ export default function Home() {
     //         return `Publicado há ${years} anos`;
     //     }
     // }
+    
     // get data from api
     const getData = async (userLoc: string) => {
         let usersList = await GetUsers();
