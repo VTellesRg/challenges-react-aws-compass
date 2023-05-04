@@ -11,7 +11,7 @@ export const GetPosts = async () => {
         console.log("error", e);
     }
 }
-
+// get posts and users functions
 export const GetUsers = async () => {
     let url = 'https://my-api-nodejs.vercel.app/api/v1/user';
     try {

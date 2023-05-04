@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { UserType } from '../types/type';
-
+// authentication functions
 type Props = {
     children: JSX.Element
 }

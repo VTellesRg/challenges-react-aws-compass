@@ -63,14 +63,14 @@ export default function Home() {
     //         return `Publicado há ${years} anos`;
     //     }
     // }
-
+    // get data from api
     const getData = async (userLoc: string) => {
         let usersList = await GetUsers();
         let postsList = await GetPosts();
         let formatedUsers: any = [];
         let formatedPosts: any = [];
 
-
+        // adjust a new array with the users data that will be rendered
         usersList.forEach((user: UserType) => {
             let userNameTemp = user.name;
             let firstName = userNameTemp.split(" ").shift();
@@ -80,7 +80,7 @@ export default function Home() {
             }
         }
         );
-
+        //adjust a new array with the posts data that will be rendered
         postsList.forEach(async (post: PostType) => {
             let commentsTemp: any = [];
             if (post.comments !== undefined) {
@@ -108,7 +108,7 @@ export default function Home() {
 
 
         setPosts(formatedPosts);
-        console.log(formatedPosts);
+        // console.log(formatedPosts);
 
         setUsers(formatedUsers);
         setLoading(false);
@@ -122,7 +122,7 @@ export default function Home() {
 
 
 
-
+    // effect to get the user data from the login page and acess the home page
     useEffect(() => {
         const userLocation = location.state.user as UserType;
         getData(userLocation.name as string);
@@ -135,7 +135,7 @@ export default function Home() {
             navigate('/', { replace: true }); //replace the current entry in the history stack instead of adding a new one
         }
     }, []);
-
+    // html return complete home page
     return (
         <div className="container">
             <div className="nav">
