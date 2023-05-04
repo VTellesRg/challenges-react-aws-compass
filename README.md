@@ -1,6 +1,6 @@
 -  private repository created to upload Compass.UOL scholarship program challanges
 
-# First challenge react aws compass
+# First challenge React / Aws Compass
 
 ## Frameworks, programming languages and tools 
 
@@ -38,3 +38,34 @@ in this folder all the project is running, at [index.tsx](https://github.com/VTe
 ### Deploy
 
 - the project can be acessed online, [click here](https://challenges-react-aws-compass.vercel.app/)
+
+
+# Second Challenge React / Aws Compass
+
+## Frameworks, programming languages and tools 
+
+All first challenge frameworks and tools and: 
+
+- node.js with Express
+- Fetch API
+- dotenv
+- path
+
+## Files and Folders
+
+ In this challenge some adjustments and improves was done, all **Pages** was organized as folders that contains **Index.tsx** and **styles.css** files. A **home** page was created with the features required for this challenge. Another folder created at *my-app* folder was the **helpers** folder, that contains **Auth.tsx** and **Data.tsx** files, at Auth.tsx can be found the *authentication functions*, at Data.tsx can be found the functions *GetUsers and GetPosts* used to get the data from the **API**.
+
+ ### The API
+
+The API is deployed in Vercel and its files can be found in the **src** folder found **outside** the my-app folder, this src Folder was created just for avaliation purposes, the files from this folder was deployed from another repository to Vercel and all reqs and res was called from the link https://my-api-nodejs.vercel.app/api/v1/user/ as a solution to work around Vercel's deployment limitations
+
+### Problems and adjustments
+
+Some problems and adjustments was commented at the code and will be fixed as soon as possible:
+
+- Post date function cannot be setted because was return an error as commented at line **36** of *Home/index.tsx*
+- Posts without a picture have a **undefined** url_imagem and at the style this posts load an empty image frame, I didn't had time to adjust all home page components styles
+- for the same reason of the url_imagem problem, the button all-comments is not functional
+- home page does not have responsivity
+- as explained at **Files and Folders** the styles was separated for each page folder as independent files, so the *App.css* of the first challenge was deleted.
+- before the next challenge I will try to separate all home page components to keep a pattern of files and folders as the first challenge was done.
