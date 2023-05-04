@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 const router = Router();
-// api users router
+
 router.get('/v1/user', (req, res) => {
     res.json({
         "users": [
@@ -142,7 +142,7 @@ router.get('/v1/user', (req, res) => {
             },
             {
                 "name": "Vinicius Faller de Oliveira",
-                "user": "viniciusfaller",
+                "user": "viniciusfalleroliveira",
                 "birthdate": "1992-09-08",
                 "email": "vinicius.oliveira.pb@compasso.com.br",
                 "password": "BolsistasUOL",
@@ -175,18 +175,18 @@ router.get('/v1/user', (req, res) => {
     }
     )
 })
-// api posts router
+
 router.get('/v1/user/post', (req, res) => {
     res.json({
         "posts": [
             {
-                "user": "anairschlinger",
+                "user": "analuizalandimirschlinger",
                 "post_date": "2023-04-22T10:15:00",
                 "description": "A primavera chegou! 🌺",
                 "likes": 8,
                 "comments": [
                     {
-                        "user": "diegosuarez",
+                        "user": "diegomartinicorenasuarez",
                         "comment": "Linda foto Ana! 🌸"
                     },
                     {
@@ -197,7 +197,7 @@ router.get('/v1/user/post', (req, res) => {
                 "url_imagem": "https://picsum.photos/200/300?random=22"
             },
             {
-                "user": "camilabarcellos",
+                "user": "camilafloraobarcellos",
                 "post_date": "2023-04-20T17:30:00",
                 "description": "Finalmente terminei de ler este livro incrível! 📚",
                 "likes": 12, "comments": [
@@ -206,13 +206,13 @@ router.get('/v1/user/post', (req, res) => {
                         "comment": "Esse livro é muito bom mesmo! 😍"
                     },
                     {
-                        "user": "emanuellemachado",
+                        "user": "emanuellefritzenmachado",
                         "comment": "Adorei a resenha, vou ler também! 📖"
                     }
                 ]
             },
             {
-                "user": "denerborges",
+                "user": "denerkisnerborges",
                 "post_date": "2023-04-19T12:00:00",
                 "description": "Praia no outono é tudo de bom! 🌊🍂",
                 "likes": 20,
@@ -222,30 +222,30 @@ router.get('/v1/user/post', (req, res) => {
                         "comment": "Que vista incrível! 🌅"
                     },
                     {
-                        "user": "josevalerio",
+                        "user": "josevaleriofigueira",
                         "comment": "Aproveita aí, Dener! 😎"
                     }
                 ],
                 "url_imagem": "https://picsum.photos/200/300?random=23"
             },
             {
-                "user": "diegosuarez",
+                "user": "diegomartinicorenasuarez",
                 "post_date": "2023-04-18T14:45:00",
                 "description": "Mais um dia de trabalho concluído! 💻",
                 "likes": 6
             },
             {
-                "user": "emanuellescortegagna",
+                "user": "emmanuelscortegagna",
                 "post_date": "2023-04-17T09:30:00",
                 "description": "Bom dia pessoal! ☀️",
                 "likes": 15,
                 "comments": [
                     {
-                        "user": "isadorabrito",
+                        "user": "isadorapinhobrito",
                         "comment": "Bom dia, Emanuelle! 😃"
                     },
                     {
-                        "user": "viniciusfaller",
+                        "user": "viniciusfalleroliveira",
                         "comment": "Linda foto, ótimo dia pra todos! 🌞"
                     }
                 ],
@@ -258,7 +258,7 @@ router.get('/v1/user/post', (req, res) => {
                 "likes": 18,
                 "comments": [
                     {
-                        "user": "emanuellescortegagna",
+                        "user": "emmanuelscortegagna",
                         "comment": "Que divertido, Gabi! 🎉"
                     },
                     {
@@ -268,7 +268,7 @@ router.get('/v1/user/post', (req, res) => {
                 ]
             },
             {
-                "user": "gabrielgarcia",
+                "user": "gabrielmedeiros",
                 "post_date": "2023-04-15T16:20:00",
                 "description": "Adoro visitar museus e ver obras incríveis como essa! 🎨",
                 "likes": 10,
@@ -285,13 +285,13 @@ router.get('/v1/user/post', (req, res) => {
                 "url_imagem": "https://picsum.photos/200/300?random=25"
             },
             {
-                "user": "isadorabrito",
+                "user": "isadorapinhobrito",
                 "post_date": "2023-04-14T08:00:00",
                 "description": "Bom dia, galera! ☕️🌞",
                 "likes": 25,
                 "comments": [
                     {
-                        "user": "josielmatos",
+                        "user": "josieljesusmatos",
                         "comment": "Bom dia, Isa! Ótima semana pra nós! 🙌"
                     },
                     {
@@ -301,7 +301,7 @@ router.get('/v1/user/post', (req, res) => {
                 ]
             },
             {
-                "user": "josevalerio",
+                "user": "josevaleriofigueira",
                 "post_date": "2023-04-12T19:30:00",
                 "description": "Noite de futebol com a turma! ⚽️", "likes": 14,
                 "comments": [
@@ -316,13 +316,13 @@ router.get('/v1/user/post', (req, res) => {
                 ]
             },
             {
-                "user": "josielmatos",
+                "user": "josieljesusmatos",
                 "post_date": "2023-04-11T11:10:00",
                 "description": "Trabalhando de casa hoje! 💻",
                 "likes": 7,
                 "comments": [
                     {
-                        "user": "emanuellemachado",
+                        "user": "emanuellefritzenmachado",
                         "comment": "Boa sorte, Josiel! 😉"
                     },
                     {
@@ -338,11 +338,11 @@ router.get('/v1/user/post', (req, res) => {
                 "likes": 23,
                 "comments": [
                     {
-                        "user": "anairschlinger",
+                        "user": "analuizalandimirschlinger",
                         "comment": "Ficou incrível, Ka! Adorei o corte! 😍"
                     },
                     {
-                        "user": "gabrielgarcia",
+                        "user": "gabrielmedeiros",
                         "comment": "Tá linda, Kaiane! 🤩"
                     }
                 ],
@@ -355,7 +355,7 @@ router.get('/v1/user/post', (req, res) => {
                 "likes": 31,
                 "comments": [
                     {
-                        "user": "viniciusoliveira",
+                        "user": "viniciusfalleroliveira",
                         "comment": "Eita, é hoje que eu fico até de manhã! 😅"
                     },
                     {
@@ -371,11 +371,11 @@ router.get('/v1/user/post', (req, res) => {
                 "likes": 16,
                 "comments": [
                     {
-                        "user": "diegosuarez",
+                        "user": "diegomartinicorenasuarez",
                         "comment": "Tava tudo delicioso! 😍"
                     },
                     {
-                        "user": "emanuellescortegagna",
+                        "user": "emmanuelscortegagna",
                         "comment": "Precisamos repetir mais vezes! 🙌"
                     }
                 ],
@@ -388,11 +388,11 @@ router.get('/v1/user/post', (req, res) => {
                 "likes": 28,
                 "comments": [
                     {
-                        "user": "isadorabrito",
+                        "user": "isadorapinhobrito",
                         "comment": "E essa marquinha de sol, hein, Vinicius? 😅"
                     },
                     {
-                        "user": "camilabarcellos",
+                        "user": "camilafloraobarcellos",
                         "comment": "Foi muito divertido, precisamos fazer de novo! 🙌"
                     }
                 ],
@@ -405,11 +405,11 @@ router.get('/v1/user/post', (req, res) => {
                 "likes": 18,
                 "comments": [
                     {
-                        "user": "isadorabrito",
+                        "user": "isadorapinhobrito",
                         "comment": "Quando é a minha vez de escolher a música, hein? 😜"
                     },
                     {
-                        "user": "gabrielgarcia",
+                        "user": "gabrielmedeiros",
                         "comment": "Você arrasou no Queen, Yuri! 👏"
                     }
                 ]
