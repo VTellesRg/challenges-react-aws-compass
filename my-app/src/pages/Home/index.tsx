@@ -33,36 +33,38 @@ export default function Home() {
     const [users, setUsers] = React.useState<UserType[] | null>(null);
 
 
-    //fix needed: function to calculate the time since the post was published: return error is not assignable to type 'ReactNode'. 
-    // const AgeMessage = (post: PostType) => {
-    //     const postDate = new Date(post.post_date);
-    //     const Today = new Date();
-    //     const diff = Today.getTime() - postDate.getTime();
+     
+    const AgeMessage = (post_date: string) => {
+        const postDate = new Date(post_date);
+        const Today = new Date();
+        const diff = Today.getTime() - postDate.getTime();
+        
+        const sec = Math.floor(diff / 1000);
+        const min = Math.floor(sec / 60);
+        const hours = Math.floor(min / 60);
+        const days = Math.floor(hours / 24);
+        const weeks = Math.floor(days / 7);
+        const months = Math.floor(days / 28);
+        const years = Math.floor(days / 365);
 
-    //     const sec = Math.floor(diff / 1000);
-    //     const min = Math.floor(sec / 60);
-    //     const hours = Math.floor(min / 60);
-    //     const days = Math.floor(hours / 24);
-    //     const weeks = Math.floor(days / 7);
-    //     const months = Math.floor(days / 30);
-    //     const years = Math.floor(days / 365);
-
-    //     if (sec < 60) {
-    //         return "Publicado há alguns segundos";
-    //     } else if (min < 60) {
-    //         return `Publicado há ${min} minutos`;
-    //     } else if (hours < 24) {
-    //         return `Publicado há ${hours} horas`;
-    //     } else if (days < 7) {
-    //         return `Publicado há ${days} dias`;
-    //     } else if (weeks < 4) {
-    //         return `Publicado há ${weeks} semanas`;
-    //     } else if (months < 12) {
-    //         return `Publicado há ${months} meses`;
-    //     } else {
-    //         return `Publicado há ${years} anos`;
-    //     }
-    // }
+        // console.log(sec, min, hours, days, weeks, months, years);
+        
+        if (sec < 60) {
+            return "Publicado há alguns segundos";
+        } else if (min < 60) {
+            return `Publicado há ${min} minuto${min > 1 ? "s" : ""}`;
+        } else if (hours < 24) {
+            return `Publicado há ${hours} hora${hours > 1 ? "s" : ""}`;
+        } else if (days < 7) {
+            return `Publicado há ${days} dia${days > 1 ? "s" : ""}`;
+        } else if (weeks < 4) {
+            return `Publicado há ${weeks} semana${weeks > 1 ? "s" : ""}`;
+        } else if (months < 12) {
+            return `Publicado há ${months} ${months > 1 ? "meses" : "mês"}`;
+        } else {
+            return `Publicado há ${years} ano${years > 1 ? "s" : ""}`;
+        }
+    }
     
     // get data from api
     const getData = async (userLoc: string) => {
@@ -97,7 +99,7 @@ export default function Home() {
             //newPost construct an object with the same structure as the api but with posts and users data together
             let newPost = {
                 user: userPostTemp,
-                post_date: post.post_date,
+                post_date: AgeMessage(post.post_date), //render post age
                 description: post.description,
                 likes: post.likes,
                 comments: commentsTemp,
@@ -125,6 +127,9 @@ export default function Home() {
 
     // effect to get the user data from the login page and acess the home page
     useEffect(() => {
+
+        console.log(AgeMessage("2023-04-22T10:15:00"));
+        
         const userLocation = location.state.user as UserType;
         getData(userLocation.name as string);
 
@@ -182,7 +187,7 @@ export default function Home() {
                                                 <div className="post-header-top-info">
                                                     <h1 className="post-header-top-info-name">{post.user.name}</h1>
                                                     <div className="post-header-top-info-subtitle">
-                                                        <p className="post-header-top-info-date">12 minutos atrás{/* add AgeMessage function here */}</p>
+                                                        <p className="post-header-top-info-date">{post.post_date}</p>
                                                         <img className="clockIcon" src="/assets/images/clock.png" />
                                                         <p className="post-header-top-info-text">Paisagens Exuberantes</p>
                                                     </div>
