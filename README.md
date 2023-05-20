@@ -69,3 +69,4 @@ Some problems and adjustments was commented at the code and will be fixed as soo
 - home page does not have responsivity
 - as explained at **Files and Folders** the styles was separated for each page folder as independent files, so the *App.css* of the first challenge was deleted.
 - before the next challenge I will try to separate all home page components to keep a pattern of files and folders as the first challenge was done.
+- fixing at dev2
