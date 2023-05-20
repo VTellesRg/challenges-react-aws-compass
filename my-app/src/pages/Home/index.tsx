@@ -19,6 +19,7 @@ import {
 
 import "./styles.css";
 import { GetPosts, GetUsers } from "../../helpers/Data";
+import { Friends } from "../../components/Friends";
 
 export default function Home() {
 
@@ -28,17 +29,17 @@ export default function Home() {
     const [loading, setLoading] = React.useState<boolean>(true);
     const navigate = useNavigate();
     const location = useLocation();
-
+    const [postSelected, setPostSelected] = React.useState<number>(0);
     const [posts, setPosts] = React.useState<any[] | null>(null);
     const [users, setUsers] = React.useState<UserType[] | null>(null);
 
 
-     
+
     const AgeMessage = (post_date: string) => {
         const postDate = new Date(post_date);
         const Today = new Date();
         const diff = Today.getTime() - postDate.getTime();
-        
+
         const sec = Math.floor(diff / 1000);
         const min = Math.floor(sec / 60);
         const hours = Math.floor(min / 60);
@@ -48,7 +49,7 @@ export default function Home() {
         const years = Math.floor(days / 365);
 
         // console.log(sec, min, hours, days, weeks, months, years);
-        
+
         if (sec < 60) {
             return "Publicado há alguns segundos";
         } else if (min < 60) {
@@ -65,7 +66,7 @@ export default function Home() {
             return `Publicado há ${years} ano${years > 1 ? "s" : ""}`;
         }
     }
-    
+
     // get data from api
     const getData = async (userLoc: string) => {
         let usersList = await GetUsers();
@@ -124,12 +125,15 @@ export default function Home() {
     }
 
 
-
+    function handleSelectPost(id: number) {
+        console.log(id);
+        setPostSelected(id);
+    }
     // effect to get the user data from the login page and acess the home page
     useEffect(() => {
 
         console.log(AgeMessage("2023-04-22T10:15:00"));
-        
+
         const userLocation = location.state.user as UserType;
         getData(userLocation.name as string);
 
@@ -230,10 +234,11 @@ export default function Home() {
                                                     <FaceSmileIcon className="comments-area-mind-icon" />
                                                 </div>
                                             </div>
-                                            <h1 className="comments-area-h1">Todos os comentários</h1>
+                                            {post.comments.length > 0 &&
+                                                <h1 className="comments-area-h1">Todos os comentários</h1>
+                                            }
 
-
-                                            {post.comments && post.comments.map((comment: any, key: number) => {
+                                            {index === postSelected && post.comments && post.comments.map((comment: any, key: number) => {
                                                 return (
                                                     <div className="comment-area" key={key}>
                                                         <img className="comment-area-user-picture" src={comment.profile_photo} />
@@ -245,11 +250,21 @@ export default function Home() {
                                                     </div>
                                                 )
                                             })}
+                                            {post.comments.length > 0 &&
+                                                <>
+                                                    <div className="comment-area-divider" />
+                                                    {index === postSelected ? <>
+                                                        <div className="all-comments" onClick={() => handleSelectPost(0)}> {/* set this function later onClick={() => setAllComments(true)} */}
+                                                            <h1 className="all-comments-h1">Fechar os comentários</h1>
+                                                        </div>
+                                                    </> : <>
+                                                        <div className="all-comments" onClick={() => handleSelectPost(index)}> {/* set this function later onClick={() => setAllComments(true)} */}
+                                                            <h1 className="all-comments-h1">Ver todos os comentários</h1>
+                                                        </div>
+                                                    </>}
 
-                                            <div className="comment-area-divider" />
-                                            <div className="all-comments"> {/* set this function later onClick={() => setAllComments(true)} */}
-                                                <h1 className="all-comments-h1">Ver todos os comentários</h1>
-                                            </div>
+                                                </>
+                                            }
 
                                         </div>
                                     </div>
@@ -263,7 +278,7 @@ export default function Home() {
                         }
                     </div>
 
-                    <div className="topics">
+                    {/* <div className="topics">
                         <div className={arrow ? "trend" : "trend-colapsed"}>
                             <div className="trend-header">
                                 <h1 className="trend-header-title">Meus Amigos</h1>
@@ -287,7 +302,9 @@ export default function Home() {
                         <div className="trend" />
                         <div className="trend" />
 
-                    </div>
+                    </div> */}
+                    <Friends arrow={arrow} setArrow={setArrow} users={users}
+                    />
 
                 </div>
 
