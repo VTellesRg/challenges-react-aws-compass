@@ -1,0 +1,90 @@
+### list all users
+
+GET http://localhost:3001/api/v1/users
+
+### create a new users
+
+POST http://localhost:3001/api/v1/users
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "user": "JohnDoe",
+  "birthdate": "1993-02-02",
+  "email": "Jhondoe@djfsad.com",
+  "password": "123456",
+  "profile_photo": "https://picsum.photos/200/300?random=444"
+}
+
+### get a user
+GET http://localhost:3001/api/v1/users/646e5ad9c5496b0f56388b60
+### update a user
+PUT http://localhost:3001/api/v1/users/646e5ad9c5496b0f56388b60
+Content-Type: application/json
+
+
+{
+
+  "birthdate": "1993-02-02",
+  "email": "Jhondoe@compass.com",
+  "password": "BolsistasUOL",
+  "profile_photo": "https://picsum.photos/200/300?random=444"
+}
+
+### delete a user
+DELETE http://localhost:3001/api/v1/users/646e5ad9c5496b0f56388b60
+
+### list all posts
+GET http://localhost:3001/api/v1/posts
+
+### create a new post
+POST http://localhost:3001/api/v1/posts
+Content-Type: application/json
+
+
+{
+  "user": "JohnDoe",
+  "description": "This is my first post",
+  "url_imagem": "https://picsum.photos/200/300?random=404"
+}
+
+### get a post
+GET http://localhost:3001/api/v1/posts/646e6574e86d5d53ba60d61a
+
+### update a post
+PUT  http://localhost:3001/api/v1/posts/646e6574e86d5d53ba60d61a
+Content-Type: application/json
+
+{
+  "description": "This is my second post",
+  "url_imagem": "https://picsum.photos/200/300?random=414"
+}
+
+### delete a post
+DELETE http://localhost:3001/api/v1/posts/646e6574e86d5d53ba60d61a
+
+### list all comments
+GET http://localhost:3001/api/v1/posts/646e479c1d24d7206a568a6b/comments
+
+### create a new comment
+POST http://localhost:3001/api/v1/posts/646e479c1d24d7206a568a6b/comments
+Content-Type: application/json
+
+{
+  "user": "JohnDoe",
+  "comment": "This is my first comment"
+}
+
+### get a comment
+GET http://localhost:3001/api/v1/posts/646e479c1d24d7206a568a6b/comments/646e69566b9d516e2e4b431d
+
+### update a comment
+PUT http://localhost:3001/api/v1/posts/646e479c1d24d7206a568a6b/comments/646e69566b9d516e2e4b431d
+Content-Type: application/json
+
+{
+  "comment": "This is my second comment"
+}
+
+### delete a comment
+DELETE http://localhost:3001/api/v1/posts/646e479c1d24d7206a568a6b/comments/646e69566b9d516e2e4b431d
