@@ -1,11 +1,8 @@
 export const GetPosts = async () => {
-    let url = 'https://my-api-nodejs.vercel.app/api/v1/user/post';
+    let url = 'http://localhost:3001/api/v1/posts';
     try {
         let response = await fetch(url).then(res => res.json()).catch(err => console.log(err));
-        if (Object.keys(response).length === 1) {
-            let postsArray = response.posts;
-            return postsArray;
-        }
+        return response;
     }
     catch (e) {
         console.log("error", e);
@@ -13,13 +10,11 @@ export const GetPosts = async () => {
 }
 // get posts and users functions
 export const GetUsers = async () => {
-    let url = 'https://my-api-nodejs.vercel.app/api/v1/user';
+    let url = 'http://localhost:3001/api/v1/users';
     try {
         let response = await fetch(url).then(res => res.json()).catch(err => console.log(err));
-        if (Object.keys(response).length === 1) {
-            let usersArray = response.users;
-            return usersArray;
-        }
+        return response;
+ 
     }
     catch (e) {
         console.log("error", e);

@@ -5,20 +5,24 @@ import { Link } from "react-router-dom";
 import CustomInput from "../../components/Input";
 import Button from "../../components/Button";
 import { validateName, validateUsername, validateEmail, validatePassword, Rafael, validateBirth } from "../../util/Validation";
-
+import { RegisterUser } from "../../helpers/Auth";
+import { UserType } from "../../types/type";
+import { useNavigate } from "react-router-dom";
 export default function Register() {
 
-  const [name, setName] = React.useState<string>("");
-  const [username, setUsername] = React.useState<string>("");
-  const [birth, setBirth] = React.useState<string>("");
-  const [email, setEmail] = React.useState<string>("");
-  const [password, setPassword] = React.useState<string>("");
-  const [confirmPassword, setConfirmPassword] = React.useState<string>("");
+  const navigate = useNavigate();
+
+  const [name, setName] = React.useState<string>("John Doe");
+  const [username, setUsername] = React.useState<string>("johnDoe");
+  const [birth, setBirth] = React.useState<string>("1999-01-01");
+  const [email, setEmail] = React.useState<string>("johndoe@email.com");
+  const [password, setPassword] = React.useState<string>("S3nh@1234");
+  const [confirmPassword, setConfirmPassword] = React.useState<string>("S3nh@1234");
 
   const [errorMessage, setErrorMessage] = React.useState<number[]>([]);
   //const [errorMessage, setErrorMessage] = React.useState<number[]>([1, 2, 3, 4, 5]); //teste  
 
-
+  
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     let errors: number[] = [];
@@ -27,13 +31,32 @@ export default function Register() {
     if (validateName(name) === true) errors.push(1); // 1 error for name
     if (validateUsername(username) === true) errors.push(2); // 2 error for username
     if (validateEmail(email) === true) errors.push(3); // 3 error for email
-    if (validatePassword(password) === true) errors.push(4); // 4 error for strengh password
+    // if (validatePassword(password) === true) errors.push(4); // 4 error for strengh password
     if (password !== confirmPassword) errors.push(5);// 5 error for password
     if (username === Rafael.username) errors.push(6); // 6 error for user already exists
     if (email === Rafael.email) errors.push(7); // 7 error for email already exists
     if (validateBirth(birth) === true) errors.push(8); // 8 error for birth
     setErrorMessage(errors);
+    console.log(errors);
+    
+    if (errors.length === 0) {
+      let user: UserType = {
+        name,
+        user: username,
+        birthdate: birth,
+        email,
+        password,
+        profile_photo: ""
+      }
+     
+      let result = await RegisterUser(user);
+      if (result !== undefined)
+        navigate('/login', {
+          state: { email: result.email },
+          replace: true
+        });
 
+    }
   };
 
   return (
@@ -72,7 +95,7 @@ export default function Register() {
             placeholder="Nascimento"
             isDate
             value={birth} />
-             {errorMessage.includes(8) &&
+          {errorMessage.includes(8) &&
             <p className="text__message">Por favor, insira uma data válida</p>
           }
           <CustomInput

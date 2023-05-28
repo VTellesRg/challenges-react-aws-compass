@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { UserType, PostType } from "../../types/type";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
-   
+
     HomeIcon,
     CameraIcon,
     PhotoIcon,
@@ -67,11 +67,13 @@ export default function Home() {
     }
 
     // get data from api
+
     const getData = async (userLoc: string) => {
         let usersList = await GetUsers();
         let postsList = await GetPosts();
         let formatedUsers: any = [];
         let formatedPosts: any = [];
+
 
         // adjust a new array with the users data that will be rendered
         usersList.forEach((user: UserType) => {
@@ -105,6 +107,7 @@ export default function Home() {
                 comments: commentsTemp,
                 url_imagem: post.url_imagem //fix needed: some users did not receive an url image from the api
             }
+            // console.log(post.user);
 
             formatedPosts.push(newPost);
         });
@@ -119,6 +122,9 @@ export default function Home() {
 
     const handleFindUser = async (users: UserType[], userNick: string) => {
         return users.find((user: UserType) => {
+            // if (user.user === userNick)
+            // console.log(user.user, userNick, user.user === userNick);
+
             return user.user === userNick;
         })
     }
@@ -128,21 +134,28 @@ export default function Home() {
         console.log(id);
         setPostSelected(id);
     }
+
     // effect to get the user data from the login page and acess the home page
-    useEffect(() => {
+    const getUserLogin = async () => {
 
-        console.log(AgeMessage("2023-04-22T10:15:00"));
+        let user = await fetch("http://localhost:3001/api/v1/users/email/" + location.state.email).then(res => res.json());
+        console.log(user);
+        // const userLocation = location.state.user as UserType;
+        getData(user.name as string);
 
-        const userLocation = location.state.user as UserType;
-        getData(userLocation.name as string);
-
-        if (userLocation !== null) {
-            setName(userLocation?.name as string);
-            setUserImage(userLocation?.profile_photo as string);
+        if (user !== null) {
+            setName(user?.name as string);
+            setUserImage(user?.profile_photo as string);
         } else {
             //redirect to login
             navigate('/', { replace: true }); //replace the current entry in the history stack instead of adding a new one
         }
+
+    }
+    // console.log(AgeMessage("2023-04-22T10:15:00"));
+    useEffect(() => {
+
+        getUserLogin();
     }, []);
     // html return complete home page
     return (
@@ -188,6 +201,8 @@ export default function Home() {
                                             <div className="post-header-top">
                                                 <img className="post-header-top-image" src={post.user.profile_photo} />
                                                 <div className="post-header-top-info">
+                                                    {/* { <>{console.log(post)}</>
+                                                    } */}
                                                     <h1 className="post-header-top-info-name">{post.user.name}</h1>
                                                     <div className="post-header-top-info-subtitle">
                                                         <p className="post-header-top-info-date">{post.post_date}</p>

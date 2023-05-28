@@ -6,7 +6,7 @@ import Button from "../../components/Button";
 // import { Rafael } from "../../util/Validation";
 import { VerifyAuth } from "../../helpers/Auth";
 
-export default function Register() {
+export default function Login() {
 
   const [email, setEmail] = React.useState<string>("ana.irschlinger.pb@compasso.com.br");
   const [password, setPassword] = React.useState<string>("BolsistasUOL");
@@ -20,10 +20,10 @@ export default function Register() {
     let error = 0;
 
 
-    let user = await VerifyAuth({ email, pass: password });
-    if (user !== undefined) {
+    let result = await VerifyAuth({ email, pass: password });
+    if (result !== undefined && result.access_token !== undefined) {
       navigate('/home', {
-        state: { user },
+        state: { email: result.email },
         replace: true
       });
     } else {

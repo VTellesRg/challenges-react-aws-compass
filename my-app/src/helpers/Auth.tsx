@@ -14,7 +14,7 @@ export const Auth = ({ children }: Props) => {
     const location = useLocation();
     let user = null;
 
-    if(location.state){
+    if (location.state) {
         user = location.state.user as UserType;
     }
     const isAuthenticated = user !== null;
@@ -22,22 +22,54 @@ export const Auth = ({ children }: Props) => {
     if (isAuthenticated) {
         return children;
     }
-    return <Navigate to="/login"/>
+    return <Navigate to="/login" />
 }
 
 export const VerifyAuth = async ({ email, pass }: VerifyProps) => {
-    let url = 'https://my-api-nodejs.vercel.app/api/v1/user';
+    let url = 'http://localhost:3001/api/v1/users/login';
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, password: pass })
+    };
+
     try {
-        let response = await fetch(url).then(res => res.json()).catch(err => console.log(err));
-        if (Object.keys(response).length === 1){
-            let usersArray = response.users;
-            //console.log(usersArray);
-            let res = usersArray.find((e: { email: string; password: string; }) => {
-               return e.email === email && e.password === pass;
-            });
-            return res;
-        }
+        let response = await fetch(url, requestOptions)
+            .then(response => response.json());
+        response.email = email;
+
+        return response;
     }
+
+    catch (e) {
+        console.log("error", e)
+    }
+}
+
+export const RegisterUser = async (user: UserType) => {
+    let url = 'http://localhost:3001/api/v1/users';
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            email: user.email,
+            password: user.password,
+            name: user.name,
+            user: user.user,
+            birth: user.birthdate,
+            profile_photo: user.profile_photo ? user.profile_photo : '',
+        })
+
+    };
+
+    try {
+        let response = await fetch(url, requestOptions)
+            .then(response => response.json());
+        console.log(response);
+        
+        return response;
+    }
+
     catch (e) {
         console.log("error", e)
     }
