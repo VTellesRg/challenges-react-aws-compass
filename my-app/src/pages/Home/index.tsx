@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 
 import React, { useEffect } from "react";
-import { UserType, PostType } from "../../types/type";
+import { UserType, PostType, CommentType } from "../../types/type";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
 
@@ -17,7 +17,7 @@ import {
 } from '@heroicons/react/24/outline'
 
 import "./styles.css";
-import { GetPosts, GetUsers } from "../../helpers/Data";
+import { GetPosts, GetUsers, GetComments } from "../../helpers/Data";
 import { Friends } from "../../components/Friends";
 
 export default function Home() {
@@ -29,8 +29,11 @@ export default function Home() {
     const navigate = useNavigate();
     const location = useLocation();
     const [postSelected, setPostSelected] = React.useState<number>(0);
-    const [posts, setPosts] = React.useState<any[] | null>(null);
+    const [posts, setPosts] = React.useState<PostType[] | []>([]);
     const [users, setUsers] = React.useState<UserType[] | null>(null);
+    const [user, setUser] = React.useState<UserType | null>(null);
+    const [description, setDescription] = React.useState<string>("");
+    const [comment, setComment] = React.useState<string>("");
 
 
 
@@ -71,9 +74,11 @@ export default function Home() {
     const getData = async (userLoc: string) => {
         let usersList = await GetUsers();
         let postsList = await GetPosts();
+        let commentsList = await GetComments();
         let formatedUsers: any = [];
         let formatedPosts: any = [];
-
+        // console.log(commentsList);
+        
 
         // adjust a new array with the users data that will be rendered
         usersList.forEach((user: UserType) => {
@@ -88,18 +93,21 @@ export default function Home() {
         //adjust a new array with the posts data that will be rendered
         postsList.forEach(async (post: PostType) => {
             let commentsTemp: any = [];
-            if (post.comments !== undefined) {
-                post.comments.forEach(async (comment: any) => {
+
+            commentsList.forEach(async (comment: CommentType) => {
+                
+                if (comment.post_id === post._id) {
                     let user = await handleFindUser(usersList, comment.user);
                     if (user !== undefined) {
                         commentsTemp.push({ user: user.name, profile_photo: user.profile_photo, comment: comment.comment });
                     }
-                });
-            }
+                }
+            });
 
-            let userPostTemp = await handleFindUser(usersList, post.user);
+            let userPostTemp = await handleFindUser(usersList, post.user as any);
             //newPost construct an object with the same structure as the api but with posts and users data together
             let newPost = {
+                id: post._id,
                 user: userPostTemp,
                 post_date: AgeMessage(post.post_date), //render post age
                 description: post.description,
@@ -107,7 +115,7 @@ export default function Home() {
                 comments: commentsTemp,
                 url_imagem: post.url_imagem //fix needed: some users did not receive an url image from the api
             }
-            // console.log(post.user);
+            // console.log(newPost);
 
             formatedPosts.push(newPost);
         });
@@ -128,10 +136,72 @@ export default function Home() {
             return user.user === userNick;
         })
     }
+    const handleCreatePost = async (user: UserType | null) => {
+        let date = new Date();
 
+        let newPost: any = {
+            user: user?.user as string,
+            post_date: date.toISOString(),
+            description: description,
+            likes: 0,
+            comments: [],
+            url_imagem: "https://picsum.photos/200/300",
+        }
+        /* let response */
+        await fetch("http://localhost:3001/api/v1/posts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newPost),
+        });
+        newPost.user = user;
+        newPost.post_date = AgeMessage(date.toISOString());
+        console.log(newPost);
+        
+        setDescription("");
+        setPosts([newPost, ...posts]);
+
+    }
+    // "http://localhost:3001/api/v1/posts"
+    const handleAddComent = async (event: React.FormEvent<HTMLFormElement>, index: number, id: string) => {
+
+        event.preventDefault();
+
+        let postTemp = posts[index];
+
+        let commentTemp: any = {
+            post_id: id,
+            user: user?.user as string,
+            comment: comment,
+        }
+        let response = await fetch(`http://localhost:3001/api/v1/comments`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(commentTemp),
+        });
+        commentTemp.user = user?.name as string;
+        commentTemp.profile_photo = user?.profile_photo as string;
+        postTemp.comments?.push(commentTemp);
+
+
+        let tempPosts = posts;
+
+        tempPosts[index] = postTemp;
+        
+        // console.log(response);
+
+        setPosts([...tempPosts]);
+
+        setComment("");
+        // console.log(commentTemp);
+        
+    }
 
     function handleSelectPost(id: number) {
-        console.log(id);
+        // console.log(id);
         setPostSelected(id);
     }
 
@@ -139,13 +209,14 @@ export default function Home() {
     const getUserLogin = async () => {
 
         let user = await fetch("http://localhost:3001/api/v1/users/email/" + location.state.email).then(res => res.json());
-        console.log(user);
+        // console.log(user);
         // const userLocation = location.state.user as UserType;
         getData(user.name as string);
 
         if (user !== null) {
             setName(user?.name as string);
             setUserImage(user?.profile_photo as string);
+            setUser(user);
         } else {
             //redirect to login
             navigate('/', { replace: true }); //replace the current entry in the history stack instead of adding a new one
@@ -179,8 +250,12 @@ export default function Home() {
                         <div className="write_field">
                             <div className="write_field_top">
                                 <img className="write_field_top_image" src={userImage} />
-                                <input className="write_field_top_input" type="text"
-                                    placeholder="No que você está pensando?" />
+                                <input className="write_field_top_input"
+                                    type="text"
+                                    placeholder="No que você está pensando?"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                />
                             </div>
                             <div className="write_field_bottom">
                                 <div className="write_field_bottom_icons">
@@ -190,13 +265,14 @@ export default function Home() {
                                     <MapPinIcon className="write_field_bottom_icon" />
                                     <FaceSmileIcon className="write_field_bottom_icon" />
                                 </div>
-                                <button className="write_field_bottom_button">Postar</button>
+                                <button onClick={() => { handleCreatePost(user) }} className="write_field_bottom_button">Postar</button>
                             </div>
                         </div>
                         {!loading &&
                             posts && posts.map((post: any, index: number, user: any) => {
                                 return (
                                     <div className="post" key={index}>
+                                        {/* <>{console.log(post)}</> */}
                                         <div className="post-header">
                                             <div className="post-header-top">
                                                 <img className="post-header-top-image" src={post.user.profile_photo} />
@@ -239,7 +315,16 @@ export default function Home() {
                                         <div className="comments-area">
                                             <div className="comments-area-mind">
                                                 <img className="comments-area-mind-user-picture" src={userImage} />
-                                                <input className="comments-area-mind-input" type="text" placeholder="O que voce está pensando? " />
+                                                <form onSubmit={(e) => handleAddComent(e, index, post.id)}>
+
+                                                    <input
+                                                        className="comments-area-mind-input"
+                                                        type="text"
+                                                        placeholder="O que voce está pensando?"
+                                                        value={comment}
+                                                        onChange={(e) => { setComment(e.target.value) }}
+                                                    />
+                                                </form>
                                                 <div className="comments-area-mind-icons">
                                                     <CameraIcon className="comments-area-mind-icon" />
                                                     <PhotoIcon className="comments-area-mind-icon" />
