@@ -12,7 +12,8 @@ type inputProps = {
 };
 
 type PostType = {
-    user: string,
+    _id: string | null,
+    user: UserType,
     post_date: string,
     description: string,
     likes: number,
@@ -32,4 +33,10 @@ type UserType = {
     profile_photo: string
 }
 
-export type { buttonProps, inputProps, PostType, UserType };
+type CommentType = {
+    post_id: string,
+    user: string,
+    comment: string
+}
+
+export type { buttonProps, inputProps, PostType, UserType, CommentType };
