@@ -39,10 +39,29 @@ export function validateEmail(email: string) {
 }
 
 export function validatePassword (password: string) {
+ 
+
+    let errors = [];
     
-    const passwordRegex = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/);
-    return password.match(passwordRegex) === null;
-  
+    if (password.length < 8 ) {
+        errors.push("Password must be at least 8 characters");
+    }
+    if (!/[A-Z]/.test(password)) {
+        errors.push("Password must contain at least one uppercase letter");
+    }
+    if (!/[a-z]/.test(password)) {
+        errors.push("Password must contain at least one lowercase letter");
+    }
+    if (!/\d/.test(password)) {
+        errors.push("Password must contain at least one digit");
+    }
+    if (!/[$@!%*?&]/.test(password)) {
+        errors.push("Password must contain at least one special character");
+    }
+    console.log(errors);
+    
+    return errors.length;
+    // (?=^.{8,}$)((?=.\d)(?=.\W+))(?![.\n])(?=.[A-Z])(?=.[a-z]).*$
 }
 
 export const Rafael = {

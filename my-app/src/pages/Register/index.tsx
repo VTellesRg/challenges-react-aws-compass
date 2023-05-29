@@ -16,8 +16,8 @@ export default function Register() {
   const [username, setUsername] = React.useState<string>("johnDoe");
   const [birth, setBirth] = React.useState<string>("1999-01-01");
   const [email, setEmail] = React.useState<string>("johndoe@email.com");
-  const [password, setPassword] = React.useState<string>("S3nh@1234");
-  const [confirmPassword, setConfirmPassword] = React.useState<string>("S3nh@1234");
+  const [password, setPassword] = React.useState<string>("P@ssw0rd");
+  const [confirmPassword, setConfirmPassword] = React.useState<string>("P@ssw0rd");
 
   const [errorMessage, setErrorMessage] = React.useState<number[]>([]);
   //const [errorMessage, setErrorMessage] = React.useState<number[]>([1, 2, 3, 4, 5]); //teste  
@@ -31,7 +31,7 @@ export default function Register() {
     if (validateName(name) === true) errors.push(1); // 1 error for name
     if (validateUsername(username) === true) errors.push(2); // 2 error for username
     if (validateEmail(email) === true) errors.push(3); // 3 error for email
-    // if (validatePassword(password) === true) errors.push(4); // 4 error for strengh password
+    if (validatePassword(password) !== 0) errors.push(4); // 4 error for strengh password
     if (password !== confirmPassword) errors.push(5);// 5 error for password
     if (username === Rafael.username) errors.push(6); // 6 error for user already exists
     if (email === Rafael.email) errors.push(7); // 7 error for email already exists
