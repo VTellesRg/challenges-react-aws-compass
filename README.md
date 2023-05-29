@@ -1,5 +1,6 @@
 -  private repository created to upload Compass.UOL scholarship program challanges
-
+# FOR THIRTH CHALLENGE CORRECTION: 
+- AT THIS MOMMENT THE LAST CHALLENGE WAS NOT CORRRECTED YET SO ALL THE PROJECT WILL BE FOUND AT THE **Dev2** BRUNCH!!!
 # First challenge React / Aws Compass
 
 ## Frameworks, programming languages and tools 
