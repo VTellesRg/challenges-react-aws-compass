@@ -272,13 +272,10 @@ export default function Home() {
                             posts && posts.map((post: any, index: number, user: any) => {
                                 return (
                                     <div className="post" key={index}>
-                                        {/* <>{console.log(post)}</> */}
                                         <div className="post-header">
                                             <div className="post-header-top">
                                                 <img className="post-header-top-image" src={post.user.profile_photo} />
                                                 <div className="post-header-top-info">
-                                                    {/* { <>{console.log(post)}</>
-                                                    } */}
                                                     <h1 className="post-header-top-info-name">{post.user.name}</h1>
                                                     <div className="post-header-top-info-subtitle">
                                                         <p className="post-header-top-info-date">{post.post_date}</p>
@@ -353,11 +350,11 @@ export default function Home() {
                                                 <>
                                                     <div className="comment-area-divider" />
                                                     {index === postSelected ? <>
-                                                        <div className="all-comments" onClick={() => handleSelectPost(0)}> {/* set this function later onClick={() => setAllComments(true)} */}
+                                                        <div className="all-comments" onClick={() => handleSelectPost(0)}> 
                                                             <h1 className="all-comments-h1">Fechar os comentários</h1>
                                                         </div>
                                                     </> : <>
-                                                        <div className="all-comments" onClick={() => handleSelectPost(index)}> {/* set this function later onClick={() => setAllComments(true)} */}
+                                                        <div className="all-comments" onClick={() => handleSelectPost(index)}> 
                                                             <h1 className="all-comments-h1">Ver todos os comentários</h1>
                                                         </div>
                                                     </>}
